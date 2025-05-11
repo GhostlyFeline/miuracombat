@@ -1173,6 +1173,6 @@
   "maintainGms1Font": false,
   "parent": {
     "name": "Fonts",
-    "path": "folders/Visual Effects/Fonts.yy",
+    "path": "folders/UI/Fonts.yy",
   },
 }

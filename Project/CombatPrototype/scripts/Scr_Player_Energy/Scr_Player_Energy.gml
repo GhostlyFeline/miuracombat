@@ -5,7 +5,7 @@ function Player_Energy_Init()
 	pEnergyMax = 50;
 	pEnergy = pEnergyMax;
 	
-	pEnergyRegen = 0.01;
+	pEnergyRegen = 0.03;
 }
 
 

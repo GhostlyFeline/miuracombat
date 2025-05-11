@@ -1,7 +1,7 @@
 /// @description Insert description here
 // You can write your code in this editor
 
-projScale = 1.2;
+projScale = 1.5;
 image_xscale = projScale;
 image_yscale = projScale;
 
@@ -9,7 +9,7 @@ projSpd = 32;
 projDir = 0;
 
 
-element = enumProjPlayerElement.water;
+element = enumProjPlayerElement.spirit;
 penetrate = false;
 damage = 5;
 stunDamage = 10;
@@ -24,15 +24,15 @@ function BulletHit(_colInst = noone, _destroy = true)
 		switch(_self.element)
 		{
 			default:
-			case enumProjPlayerElement.water:
+			case enumProjPlayerElement.spirit:
 				if ( _colInst != noone )
 				{
 					var _dir = point_direction(_colInst.x, _colInst.y, _self.x, _self.y);
-					part_type_direction(fxType[enumFxType.pFxProj_waterHitSpark00], _dir - 90, _dir + 90, 0, 0);
+					part_type_direction(fxType[enumFxType.pFxProj_spiritHitSpark00], _dir - 90, _dir + 90, 0, 0);
 				}
-				else { part_type_direction(fxType[enumFxType.pFxProj_waterHitSpark00], 0, 360, 0, 0); }		
-				part_particles_create(fxSysGlobalAbove, _self.x, _self.y, fxType[enumFxType.pFxProj_waterHitSpark00], 8 );
-				part_particles_create(fxSysGlobalAbove, _self.x, _self.y, fxType[enumFxType.pFxProj_waterHitFlash00], 1 );
+				else { part_type_direction(fxType[enumFxType.pFxProj_spiritHitSpark00], 0, 360, 0, 0); }		
+				part_particles_create(fxSysGlobalAbove, _self.x, _self.y, fxType[enumFxType.pFxProj_spiritHitSpark00], 8 );
+				part_particles_create(fxSysGlobalAbove, _self.x, _self.y, fxType[enumFxType.pFxProj_spiritHitFlash00], 1 );
 				break;
 				
 			case enumProjPlayerElement.light:	

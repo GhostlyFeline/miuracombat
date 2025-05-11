@@ -7,7 +7,7 @@ var _colorB = merge_color(c_yellow, c_orange, 0.75);
 
 switch(element)
 {
-	case enumProjPlayerElement.water: _colorA = merge_color(c_blue  , c_aqua  , 0.50); _colorB = merge_color(c_blue  , c_white , 0.85); break;				
+	case enumProjPlayerElement.spirit: _colorA = merge_color(c_blue  , c_aqua  , 0.50); _colorB = merge_color(c_blue  , c_white , 0.85); break;				
 	case enumProjPlayerElement.light: _colorA = merge_color(c_yellow, c_orange, 0.75); _colorB = merge_color(c_yellow, c_white , 0.75); break;
 	case enumProjPlayerElement.ice:   _colorA = merge_color(c_aqua  , c_white , 0.50); _colorB = merge_color(c_aqua  , c_white , 0.50); break;
 	case enumProjPlayerElement.fire:  _colorA = merge_color(c_red   , c_orange, 0.50); _colorB = merge_color(c_orange, c_yellow, 0.50); break;

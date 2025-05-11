@@ -46,13 +46,39 @@ else
 }
 
 
-if ( enemyStunTimer < 0 )
+if ( enemyStunTimer < 0 && tick > 60 )
 {	
-	var _len = 2;
-	var _dir = point_direction(x, y, ObjPlayer.x, ObjPlayer.y);
-
-	x += lengthdir_x(_len, _dir);
-	y += lengthdir_y(_len, _dir);
+	if ( tick mod 300 == 0 )
+	{
+		var _len = random(ObjPlayer.pMoveBoundsCircleRadius);
+		var _dir = random(360);
+		enemyMoveTarget = [ ( room_width * 0.5 ) + lengthdir_x(_len, _dir), ( room_height * 0.5 ) + lengthdir_y(_len, _dir) ];		
+	}	
+	
+	var _xSpd = 0;
+	var _ySpd = 0;
+	
+	var _speed = 4;
+	var _dist = point_distance(x, y, enemyMoveTarget[0], enemyMoveTarget[1]);
+	if ( _dist >= _speed )
+	{
+		var _len = _speed;
+		var _dir = point_direction(x, y, enemyMoveTarget[0], enemyMoveTarget[1]);
+		_xSpd = lengthdir_x(_len, _dir);
+		_ySpd = lengthdir_y(_len, _dir);
+		
+		//move_and_collide( _xSpd, _ySpd, ObjEnemyTest );
+		
+		x += _xSpd;
+		y += _ySpd;
+	}
+	else
+	{
+		var _len = 0;
+		var _dir = image_angle;
+		x = enemyMoveTarget[0];
+		y = enemyMoveTarget[1];
+	}
 
 
 	#region Rotate the character based on their current direction.
@@ -79,18 +105,17 @@ if ( enemyStunTimer < 0 )
 	}
 
 	#endregion
-
-
-	if ( tick > 60 )
+	
+	var _timer = ( tick + ( enemyId * 60 ) ) mod 120;
+	if ( _timer == 0 || _timer == 5 || _timer == 10 )
 	{
-		if ( ( tick + ( enemyId * 30 ) ) mod 120 == 0 )
-		{
-			var _bullet = instance_create_layer(x, y, layer, ObjProjEnemy);
-			_bullet.projSpd = 8;
-			_bullet.projDir = point_direction(_bullet.x, _bullet.y, ObjPlayer.x, ObjPlayer.y);
-			audio_play_sound(SndEnemyShot, 10, 0);
-		}
+		var _bullet = instance_create_layer(x, y, layer, ObjProjEnemy);
+		_bullet.projSpd = 12;
+		_bullet.projDir = point_direction(_bullet.x, _bullet.y, ObjPlayer.x, ObjPlayer.y);
+		audio_sound_pitch(SndEnemyShot, random_range(0.95, 1.05) );
+		audio_play_sound(SndEnemyShot, 10, 0);
 	}
+	
 }
 
 tick++;

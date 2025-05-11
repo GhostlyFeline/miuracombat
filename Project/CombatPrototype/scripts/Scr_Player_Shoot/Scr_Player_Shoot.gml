@@ -19,7 +19,7 @@ function Player_Shoot_Tick()
 	#region Modify attack speed based on element type.
 	switch(playerElementCurrent)
 	{
-		case enumProjPlayerElement.water: pAttackA_frames = 20; break;
+		case enumProjPlayerElement.spirit: pAttackA_frames = 20; break;
 		case enumProjPlayerElement.light: pAttackA_frames = 10; break;
 		case enumProjPlayerElement.ice:   pAttackA_frames = 30; break;
 		case enumProjPlayerElement.fire:  pAttackA_frames = 50; break;
@@ -71,8 +71,8 @@ function Player_Shoot_Tick()
 		switch(playerElementCurrent)
 		{
 			default:
-			case enumProjPlayerElement.water:
-				#region Water
+			case enumProjPlayerElement.spirit:
+				#region Spirit
 				if ( pAttackA_animTimer == 8 || pAttackA_animTimer == 11 || pAttackA_animTimer == 14 )
 				{
 					audio_play_sound(SndPlayerShot, 10, 0);
@@ -80,7 +80,7 @@ function Player_Shoot_Tick()
 					var _bulDir = _aimDir;
 			
 					var _bullet = instance_create_layer(x, y, layer, ObjProjPlayer);
-					_bullet.projSpd = 40;
+					_bullet.projSpd = 50;
 					_bullet.projDir = _bulDir;
 					_bullet.damage = 5;
 					_bullet.stunDamage = 4;
@@ -105,8 +105,9 @@ function Player_Shoot_Tick()
 						var _bulDir = _aimDir + lerp(-10, 10, i / (_bulletNum - 1) );
 			
 						var _bullet = instance_create_layer(x, y, layer, ObjProjPlayer);
-						_bullet.projSpd = 50;
+						_bullet.projSpd = 60;
 						_bullet.projDir = _bulDir;
+						_bullet.projScale *= 2.0;
 						_bullet.damage = 5;
 						_bullet.stunDamage = 4;
 						_bullet.element = playerElementCurrent;
@@ -134,7 +135,7 @@ function Player_Shoot_Tick()
 					
 					var _bullet = instance_create_layer(x + _lX, y + _lY, layer, ObjProjPlayer);
 					var _aimDir = point_direction(_bullet.x, _bullet.y, _targetPos[0], _targetPos[1]);
-					_bullet.projSpd = 30;
+					_bullet.projSpd = 40;
 					_bullet.projDir = _aimDir;
 					_bullet.projScale *= 3.0;
 					_bullet.damage = 15;
@@ -161,7 +162,7 @@ function Player_Shoot_Tick()
 					var _bulDir = _aimDir;
 			
 					var _bullet = instance_create_layer(x, y, layer, ObjProjPlayer);
-					_bullet.projSpd = 15;
+					_bullet.projSpd = 30;
 					_bullet.projDir = _bulDir;
 					_bullet.projScale *= 2;
 					_bullet.damage = 10;

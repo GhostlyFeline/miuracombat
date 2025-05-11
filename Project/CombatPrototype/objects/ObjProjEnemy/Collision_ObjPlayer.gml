@@ -19,5 +19,11 @@ if (!other.invincible)
 }
 else
 {
+	var _self = id;
+	with (FxHandler)
+	{
+		part_particles_create(fxSysGlobalBelow, _self.x, _self.y, fxType[enumFxType.pFxPlayer_grazeSpark00], 5 );
+	}
+	
 	audio_play_sound(SndPlayerGraze, 10, 0);
 }

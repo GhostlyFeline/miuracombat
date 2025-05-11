@@ -3,7 +3,7 @@
 
 enum enumProjPlayerElement
 {
-	water,
+	spirit,
 	light,
 	fire,
 	ice,
@@ -11,7 +11,7 @@ enum enumProjPlayerElement
 
 function Player_Element_Menu_Init()
 {
-	playerElementCurrent = enumProjPlayerElement.water;	
+	playerElementCurrent = enumProjPlayerElement.spirit;	
 	
 	pElementMenuEnabled = false;
 	pElementMenuRadius    = 240;
@@ -53,9 +53,9 @@ function Player_Element_Menu_Tick()
 					break;
 				
 				case 90:
-					playerElementCurrent = enumProjPlayerElement.water;
+					playerElementCurrent = enumProjPlayerElement.spirit;
 					Character_Flash_Activate(15, 1, merge_color(c_blue, c_white, 0.33), 1, true, 10);
-					part_particles_create(FxHandler.fxSysGlobalBelow, x, y, FxHandler.fxType[enumFxType.pFxProj_waterHitFlash00], 1 );
+					part_particles_create(FxHandler.fxSysGlobalBelow, x, y, FxHandler.fxType[enumFxType.pFxProj_spiritHitFlash00], 1 );
 					break;
 				
 				case 180:

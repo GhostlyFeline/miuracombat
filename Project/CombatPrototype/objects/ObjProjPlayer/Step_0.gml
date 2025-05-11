@@ -16,4 +16,4 @@ if ( !projMovePause )
 
 var _player = ObjPlayer;
 var _boundsDist = point_distance (_player.pMoveBoundsCirclePos[0], _player.pMoveBoundsCirclePos[1], x, y);
-if ( _boundsDist > _player.pMoveBoundsCircleRadius ) { BulletHit(); }
+if ( _boundsDist > _player.pMoveBoundsCircleRadius + sprite_width ) { BulletHit(); }

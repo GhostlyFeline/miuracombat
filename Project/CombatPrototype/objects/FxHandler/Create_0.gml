@@ -17,8 +17,10 @@ enum enumFxType
 	pFxPlayer_dashBubbles00,
 	pFxPlayer_dashShine00,
 	
-	pFxProj_waterHitFlash00,
-	pFxProj_waterHitSpark00,
+	pFxPlayer_grazeSpark00,
+	
+	pFxProj_spiritHitFlash00,
+	pFxProj_spiritHitSpark00,
 	
 	pFxProj_lightHitFlash00,
 	pFxProj_lightHitSpark00,
@@ -82,12 +84,26 @@ part_type_life(fxType[_entry], 30, 30);
 
 #endregion
 
+
+var _entry = enumFxType.pFxPlayer_grazeSpark00;
+fxType[_entry] = part_type_create();
+part_type_sprite(fxType[_entry], SprFxProjImpactSpark, 0, 0, 0);
+part_type_scale(fxType[_entry], 1, 0.5);
+part_type_size(fxType[_entry], 0.25, 0.5, 0.20, 0 );
+part_type_alpha3(fxType[_entry], 1, 1, 0 );
+part_type_color3(fxType[_entry], c_white, c_white, c_aqua);
+part_type_speed(fxType[_entry], 12, 24, 0, 0);
+part_type_direction(fxType[_entry], 0, 360, 0, 0);
+part_type_orientation(fxType[_entry], 0, 0, 0, 0, true);
+part_type_life(fxType[_entry], 10, 10);
+
+
 #region Player Projectiles
 
 
-#region Water
+#region Spirit
 
-var _entry = enumFxType.pFxProj_waterHitFlash00;
+var _entry = enumFxType.pFxProj_spiritHitFlash00;
 fxType[_entry] = part_type_create();
 part_type_sprite(fxType[_entry], SprFxProjImpactFlash, 0, 0, 0);
 part_type_size(fxType[_entry], 0, 0, 0.15, 0 );
@@ -96,7 +112,7 @@ part_type_color3(fxType[_entry], c_white, c_white, c_blue);
 part_type_blend(fxType[_entry], true);
 part_type_life(fxType[_entry], 10, 10);
 
-var _entry = enumFxType.pFxProj_waterHitSpark00;
+var _entry = enumFxType.pFxProj_spiritHitSpark00;
 fxType[_entry] = part_type_create();
 part_type_sprite(fxType[_entry], SprFxProjImpactSpark, 0, 0, 0);
 part_type_size(fxType[_entry], 0.1, 0.3, 0.10, 0 );

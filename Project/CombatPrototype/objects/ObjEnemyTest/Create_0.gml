@@ -9,16 +9,21 @@ enemyGiveXp = 20;
 
 enemyHitList = ds_list_create();
 
-charHealthMax = 200;
+charHealthMax = 300;
 charHealth = charHealthMax;
 
-enemyWeakness = choose(enumProjPlayerElement.water, enumProjPlayerElement.light, enumProjPlayerElement.ice, enumProjPlayerElement.fire);
+enemyWeakness = choose(enumProjPlayerElement.spirit, enumProjPlayerElement.light, enumProjPlayerElement.ice, enumProjPlayerElement.fire);
 
 enemyStun = 0;
-enemyStunMax = 100;
+enemyStunMax = 200;
 
 enemyStunTimer  = -1;
 enemyStunFrames = 240;
+
+
+var _len = random(ObjPlayer.pMoveBoundsCircleRadius);
+var _dir = random(360);
+enemyMoveTarget = [ ( room_width * 0.5 ) + lengthdir_x(_len, _dir), ( room_height * 0.5 ) + lengthdir_y(_len, _dir) ];		
 
 
 charOffset = [0, 0];
