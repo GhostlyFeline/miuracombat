@@ -45,10 +45,10 @@ function Player_Move_Tick()
 	
 		if ( _moveAxisX == 0 && _moveAxisY == 0 )
 		{
-			if ( pDashA_animTimer >= 0 )
+			if ( stateCurrent == State_Player_Dash )
 			{
 				_rawLen = 1;
-				_dir = pDashA_lastDir;
+				_dir = pDashLastDir;
 			}
 		}	
 	
@@ -91,7 +91,7 @@ function Player_Move_Tick()
 
 	if ( _mDist > 1 )
 	{
-		pDashA_lastDir = _mDir;	
+		pDashLastDir = _mDir;	
 		image_angle = _mDir;
 		if ( pMoveXspd > 0 )
 		{

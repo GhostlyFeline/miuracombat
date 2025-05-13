@@ -89,7 +89,7 @@ function Player_Element_Menu_Tick()
 	}
 	else
 	{
-		if ( pElementSwap_animTimer < 0 && pAttackA_animTimer < 0 )
+		if ( pElementSwap_animTimer < 0 && stateCurrent != State_Player_Attack )
 		{
 			if ( input_check_pressed("element" ) )
 			{		

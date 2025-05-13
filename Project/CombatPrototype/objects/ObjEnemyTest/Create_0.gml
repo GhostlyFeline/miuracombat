@@ -5,7 +5,8 @@ Character_Flash_Init();
 
 enemyId = 0;
 
-enemyGiveXp = 20;
+enemyDropXp = 20;
+enemyDropItem = [enumItemType.potionSmall];
 
 enemyHitList = ds_list_create();
 
@@ -16,6 +17,7 @@ enemyWeakness = choose(enumProjPlayerElement.spirit, enumProjPlayerElement.light
 
 enemyStun = 0;
 enemyStunMax = 200;
+enemyStunDegrade = 0.1;
 
 enemyStunTimer  = -1;
 enemyStunFrames = 240;

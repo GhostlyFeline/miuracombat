@@ -39,10 +39,60 @@ if ( battleWon )
 	{
 		if ( i == 1 ) { draw_set_color(_colorA); }
 		if ( i == 0 ) { draw_set_color(_colorB); }
-	
-		var _textPos = [_guiCenterX, _guiCenterY - 256];
+		
+		draw_set_font(FntWinScreenA);
+		//draw_set_halign(fa_center);
+		var _textPos = [_guiCenterX, _guiCenterY - 400];
 		draw_text(_textPos[0] - (i*2), _textPos[1] + (i*2), "VICTORY!" );
-		var _textPos = [_guiCenterX, _guiCenterY + 256];
+		
+		draw_set_font(FntWinScreenB);
+		_textPos[1] += 80;
 		draw_text(_textPos[0] - (i*2), _textPos[1] + (i*2), "XP Earned: " + string(BattleHandler.xpTotal) );
+		
+		_textPos[1] += 70;
+		draw_text(_textPos[0] - (i*2), _textPos[1] + (i*2), "Items Gained" );
+		
+		draw_set_font(FntWinScreenC);
+		_textPos[1] += 60;
+		//var _arrayLen = array_length(itemDropArray);
+		//for (var j = 0; j < _arrayLen; j++;)
+		//{
+		//	var _item = "";
+		//	switch(itemDropArray[j])
+		//	{
+		//		case enumItemType.potionSmall: _item = "Small Potion"; break;
+		//	}
+		//	draw_text(_textPos[0] - (i*2), _textPos[1] + (j*48) + (i*2), _item );
+		//}
+		
+		
+		function UniqueItem(_index, _num) constructor
+		{
+			unItemIndex = _index;
+			unItemNumber = _num;
+		}
+		
+		var _uniqueItemsArray = array_create(0);
+		for ( var j = 0; j < enumItemType.null; j++; )
+		{
+			_uniqueItemsArray[j] = new UniqueItem(j, 0);
+			
+			var _arrayLen = array_length(itemDropArray);
+			for ( var k = 0; k < _arrayLen; k++; )
+			{
+				if ( itemDropArray[k] == _uniqueItemsArray[j].unItemIndex ) { _uniqueItemsArray[j].unItemNumber++; }
+			}
+			
+			var _itemString = "";
+			switch(_uniqueItemsArray[j].unItemIndex)
+			{
+				case enumItemType.potionSmall: _itemString = "Small Potion"; break;
+				case enumItemType.null:        _itemString = "<NULL>";       break;
+			}
+			_itemString += " x " + string(_uniqueItemsArray[j].unItemNumber);
+			
+			draw_text(_textPos[0] - (i*2), _textPos[1] + (j*48) + (i*2), _itemString );
+		}		
+		
 	}
 }

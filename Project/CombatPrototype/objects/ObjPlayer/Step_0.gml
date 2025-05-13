@@ -11,10 +11,6 @@ if ( global.hitstopActive ) { exit; }
 
 if ( !Player_Element_Menu_Tick() )
 {
-	Player_Move_Tick();
-	Player_Dash_Tick();
-	Player_Targeting_Tick();
-	Player_Breaker_Tick();
-	Player_Shoot_Tick();
+	State_Sys_Tick();
 	Player_Energy_Tick();
 }

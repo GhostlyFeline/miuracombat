@@ -1,6 +1,8 @@
 /// @description Insert description here
 // You can write your code in this editor
 
+State_Sys_Init(State_Player_Normal, -1);
+
 Character_Flash_Init();
 Character_Shake_Init();
 Character_Kickback_Init();

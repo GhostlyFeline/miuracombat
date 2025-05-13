@@ -34,7 +34,7 @@ if ( enemyStunTimer >= 0 )
 	enemyStun = 0;
 }
 else
-{
+{	
 	if ( enemyStun >= enemyStunMax )
 	{
 		audio_play_sound(SndEnemyStun, 100, 0);
@@ -43,6 +43,7 @@ else
 		var _text = instance_create_layer(x, y, "TextAbove", ObjStunText );
 		_text.master = id;
 	}
+	else { enemyStun = max( enemyStun - enemyStunDegrade, 0 ); }
 }
 
 
@@ -136,8 +137,9 @@ if ( charHealth <= 0 )
 	audio_play_sound(SndEnemyExplode, 10, 0);
 	
 	var _text = instance_create_layer(x, y, "TextAbove", ObjXpNumber );
-	_text.damage = enemyGiveXp;
-	BattleHandler.xpTotal += enemyGiveXp;
+	_text.damage = enemyDropXp;
+	BattleHandler.xpTotal += enemyDropXp;
+	for ( var i = 0; i < array_length(enemyDropItem); i++; ) { array_push(BattleHandler.itemDropArray, enemyDropItem[i]); }
 	
 	instance_destroy();
 } 

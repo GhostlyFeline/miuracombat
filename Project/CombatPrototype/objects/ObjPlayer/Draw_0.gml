@@ -80,7 +80,7 @@ for ( var i = 0; i < 6; i++; )
 		var _dir = ( (360 / 6) * i ) + ( (360 / 12) * (j mod 2) );
 		var _lX  = lengthdir_x(_len, _dir);
 		var _lY  = lengthdir_y(_len, _dir);
-		var _alpha = lerp(0.20, 0.00, j / 3);
+		var _alpha = lerp(0.15, 0.00, j / 3);
 	
 		draw_sprite_ext(sprite_index, image_index, _charDrawX + _lX, _charDrawY + _lY, image_xscale, image_yscale, image_angle, image_blend, image_alpha * _alpha);
 	}
