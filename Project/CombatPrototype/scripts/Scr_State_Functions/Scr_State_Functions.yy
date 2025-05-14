@@ -5,7 +5,7 @@
   "isDnD": false,
   "isCompatibility": false,
   "parent": {
-    "name": "State Machine",
-    "path": "folders/Systems/State Machine.yy",
+    "name": "Systems",
+    "path": "folders/Systems.yy",
   },
 }

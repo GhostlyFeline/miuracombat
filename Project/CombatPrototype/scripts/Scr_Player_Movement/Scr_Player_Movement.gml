@@ -87,8 +87,6 @@ function Player_Move_Tick()
 	var _mDist = point_distance (0, 0, pMoveXspd, pMoveYspd);
 	var _mDir  = point_direction(0, 0, pMoveXspd, pMoveYspd);
 
-
-
 	if ( _mDist > 1 )
 	{
 		pDashLastDir = _mDir;	
@@ -121,37 +119,6 @@ function Player_Move_Tick()
 			x = pMoveBoundsCirclePos[0] + lengthdir_x(pMoveBoundsCircleRadius, _boundsDir);
 			y = pMoveBoundsCirclePos[1] + lengthdir_y(pMoveBoundsCircleRadius, _boundsDir);
 		}
-	
-	
-	
-		//var _self = id;
-		with (FxHandler)
-		{
-			repeat (3)
-			{
-				var _len = _self.pMoveBoundsCircleRadius + random_range(100, 400);
-				var _dir = random(360);
-				var _lX  = lengthdir_x(_len, _dir);
-				var _lY  = lengthdir_y(_len, _dir);
-		
-				part_particles_create(fxSysGlobalAbove, _self.pMoveBoundsCirclePos[0] + _lX, _self.pMoveBoundsCirclePos[1] + _lY, fxType[enumFxType.wFxProj_borderCloud00], 1 );
-			
-			}
-		
-			var _num = 6;
-			var _initAngle = random(360);
-			var _len = _self.pMoveBoundsCircleRadius + 160;
-			for ( var i = 0; i < _num; i++; )
-			{
-				var _dir = _initAngle + ( ( 360 / _num ) * i );
-				var _lX  = lengthdir_x(_len, _dir);
-				var _lY  = lengthdir_y(_len, _dir);
-			
-				part_type_direction(fxType[enumFxType.wFxProj_borderLines], _dir + 90, _dir + 90, 0, 0);
-				part_particles_create(fxSysGlobalAbove, _self.pMoveBoundsCirclePos[0] + _lX, _self.pMoveBoundsCirclePos[1] + _lY, fxType[enumFxType.wFxProj_borderLines], 1 );
-			}
-		}
-	
 	}
 	#endregion
 

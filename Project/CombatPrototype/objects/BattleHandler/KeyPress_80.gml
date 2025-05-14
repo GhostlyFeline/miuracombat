@@ -22,3 +22,5 @@ for ( var i = 0; i < _spawnNum; i++; )
 	_enemy.enemyWeakness = global.enemySpawnIndex mod 4;
 	global.enemySpawnIndex++;
 }
+
+with ( ObjPlayer ) { State_Change(State_Player_Normal, -1); }

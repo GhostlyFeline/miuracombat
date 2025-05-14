@@ -28,10 +28,11 @@ function State_Sys_Tick()
 	if ( stateLength >= 0 && stateTick >= stateLength ) { State_Change(stateNext, stateNextLength); }
 }
 
-function State_Change(_state = stateNext, _stateLength = stateNextLength)
+function State_Change(_state = stateNext, _stateLength = stateNextLength, _forceReset = false)
 {
 	//if ( !is_method(_state) ) { show_debug_message("ERROR: No State Method"); return stateCurrent; }
 	
+	if ( _state == stateCurrent && !_forceReset ) { return stateCurrent; }
 	
 	//End the previous state.
 	statePrevious = stateCurrent;
@@ -43,6 +44,8 @@ function State_Change(_state = stateNext, _stateLength = stateNextLength)
 	stateLength = _stateLength;	
 	stateCurrent(enumStateStatus.init);
 	
-	
+	//stateNext = stateCurrent;
+	//stateNextLength = -1;
+		
 	return stateCurrent;
 }

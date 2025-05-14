@@ -19,6 +19,10 @@ enum enumFxType
 	
 	pFxPlayer_grazeSpark00,
 	
+	pFxPlayer_regenCross00,
+	
+	pFxPlayer_skillSirenNote00,
+	
 	pFxProj_spiritHitFlash00,
 	pFxProj_spiritHitSpark00,
 	
@@ -35,6 +39,8 @@ enum enumFxType
 	
 	eFxProj_hitFlash00,
 	eFxProj_hitSpark00,
+	
+	eFxEnemy_appearSpark00,
 	
 	eFxEnemy_explodeFlash00,
 	eFxEnemy_explodeFlash01,
@@ -96,6 +102,28 @@ part_type_speed(fxType[_entry], 12, 24, 0, 0);
 part_type_direction(fxType[_entry], 0, 360, 0, 0);
 part_type_orientation(fxType[_entry], 0, 0, 0, 0, true);
 part_type_life(fxType[_entry], 10, 10);
+
+var _entry = enumFxType.pFxPlayer_regenCross00;
+fxType[_entry] = part_type_create();
+part_type_sprite(fxType[_entry], SprFxHealthPlus, 0, 0, 0);
+part_type_size(fxType[_entry], 0.25, 1.0, 0, 0 );
+part_type_alpha2(fxType[_entry], 0.66, 0 );
+part_type_color2(fxType[_entry], c_white, c_green);
+part_type_speed(fxType[_entry], 1, 1, 0, 0);
+part_type_direction(fxType[_entry], 90, 90, 0, 0);
+part_type_life(fxType[_entry], 30, 30);
+
+var _entry = enumFxType.pFxPlayer_skillSirenNote00;
+fxType[_entry] = part_type_create();
+part_type_sprite(fxType[_entry], SprFxSong, 0, 0, 0);
+part_type_size(fxType[_entry], 0.7, 1.0, 0.01, 0 );
+part_type_alpha2(fxType[_entry], 1, 0 );
+part_type_color3(fxType[_entry], c_fuchsia, c_white, c_fuchsia);
+part_type_blend(fxType[_entry], true);
+part_type_speed(fxType[_entry], 0, 1, 0, 0);
+part_type_direction(fxType[_entry], 0, 360, 0, 0);
+part_type_orientation(fxType[_entry], -5, 5, 0, 0, false);
+part_type_life(fxType[_entry], 60, 60);
 
 
 #region Player Projectiles
@@ -216,6 +244,16 @@ part_type_orientation(fxType[_entry], 0, 360, 0, 0, true);
 part_type_life(fxType[_entry], 15, 15);
 
 #endregion
+
+var _entry = enumFxType.eFxEnemy_appearSpark00;
+fxType[_entry] = part_type_create();
+part_type_sprite(fxType[_entry], SprProjEnemy, 0, 0, 0);
+part_type_size(fxType[_entry], 1.5, 3.5, -0.05, 0 );
+part_type_alpha3(fxType[_entry], 1, 1, 0 );
+part_type_color2(fxType[_entry], c_black, c_purple);
+part_type_speed(fxType[_entry], 4, 6, -0.125, 0);
+part_type_direction(fxType[_entry], 0, 360, 0, 0);
+part_type_life(fxType[_entry], 30, 40);
 
 #region Enemy Explode
 

@@ -39,7 +39,7 @@ draw_set_circle_precision(24);
 
 if ( instance_exists(ObjPlayerTarget.follow) ) 
 {
-	draw_set_alpha(0.10);
+	draw_set_alpha(image_alpha * 0.10);
 	var _targetPos = [ObjPlayerTarget.x, ObjPlayerTarget.y];
 	gpu_set_blendmode(bm_add);
 	draw_line_width_color(x, y, _targetPos[0], _targetPos[1], 2, c_white, _aimColor );
@@ -51,7 +51,7 @@ if ( instance_exists(ObjPlayerTarget.follow) )
 
 #region Player Character
 
-draw_sprite_ext(SprPlayerCollider, 0, x, y, image_xscale, image_yscale, 0, c_white, 0.10);
+draw_sprite_ext(SprPlayerCollider, 0, x, y, image_xscale, image_yscale, 0, c_white, image_alpha * 0.10);
 
 var _charDrawX = x + charOffset[0];
 var _charDrawY = y + charOffset[1];
@@ -115,7 +115,7 @@ if ( instance_exists(ObjPlayerTarget.follow) )
 	var _targetPos = [ObjPlayerTarget.x, ObjPlayerTarget.y];
 	var _aimDir = point_direction(x, y, _targetPos[0], _targetPos[1]);
 	gpu_set_blendmode(bm_add);
-	draw_sprite_ext(SprTargetPointer, 0, x, y, 1.2, 1.2, _aimDir, _aimColor, 0.66 );
+	draw_sprite_ext(SprTargetPointer, 0, x, y, 1.2, 1.2, _aimDir, _aimColor, image_alpha * 0.66 );
 	gpu_set_blendmode(bm_normal);
 }
 

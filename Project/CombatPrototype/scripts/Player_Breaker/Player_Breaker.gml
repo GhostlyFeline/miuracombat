@@ -21,7 +21,7 @@ function State_Player_Breaker(_status)
 			#region Tick Script
 			
 			Player_Move_Tick();
-			Player_Targeting_Tick();
+			Player_Targeting_Tick();			
 			
 			#region Play the attack animation based on the length of the attack.
 			sprite_index = SprPlayerAttack;
@@ -83,6 +83,9 @@ function State_Player_Breaker(_status)
 			
 			if ( pAttackCooldownTimer  >= 0 ) { pAttackCooldownTimer--;  }	
 			if ( pDashCooldownTimer    >= 0 ) { pDashCooldownTimer--;    }
+			if ( pSkillCooldownTimer   >= 0 ) { pSkillCooldownTimer--;   }
+			Player_Energy_Tick();
+			Player_Skills_Tick();
 						
 			#endregion
 			break;

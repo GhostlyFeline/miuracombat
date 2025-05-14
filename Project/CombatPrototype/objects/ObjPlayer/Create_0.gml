@@ -13,10 +13,11 @@ Player_Dash_Init();
 Player_Targeting_Init();
 Player_Shoot_Init();
 Player_Breaker_Init();
+Player_Skills_Init();
 Player_Element_Menu_Init();
 
 
-charHealthMax = 100;
+charHealthMax = 200;
 charHealth = charHealthMax;
 
 
@@ -49,6 +50,13 @@ charShakeAmp = 0;
 display_set_gui_size(1920, 1080);
 
 
+drawHpReal    = charHealth;
+drawHpDisplay = drawHpReal;
+
+drawSpReal    = pEnergy;
+drawSpDisplay = drawSpReal;
+
+
 
 function PlayerHit(_damage)
 {		
@@ -62,7 +70,8 @@ function PlayerHit(_damage)
 	screenShakeFrames = 30;
 	screenShakeTimer  = screenShakeFrames;
 	screenShakeAmp = 16;
-	global.hitstopTimer = 8;
+	
+	global.hitstopTimer = 3;
 	global.hitstopDelay = 2;
 	
 	Character_Flash_Activate(8, 1, c_red, 1.0, true, 100);

@@ -18,6 +18,13 @@ itemDropArray = array_create(0);
 
 battleActive = false;
 battleWon = false;
+battleLost = false;
+
+battleVictoryFrames = 300;
+battleVictoryTimer  = 0;
+
+battleGameOverFrames = 300;
+battleGameOverTimer  = 0;
 
 battleEnemyList = ds_list_create();
 battleEnemyIdLow  = 0;

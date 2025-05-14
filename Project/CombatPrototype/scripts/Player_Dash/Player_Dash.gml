@@ -68,6 +68,8 @@ function State_Player_Dash(_status)
 			
 			if ( pAttackCooldownTimer  >= 0 ) { pAttackCooldownTimer--;  }
 			if ( pBreakerCooldownTimer >= 0 ) { pBreakerCooldownTimer--; }
+			if ( pSkillCooldownTimer   >= 0 ) { pSkillCooldownTimer--;   }
+			Player_Skills_Tick();
 						
 			#endregion
 			break;

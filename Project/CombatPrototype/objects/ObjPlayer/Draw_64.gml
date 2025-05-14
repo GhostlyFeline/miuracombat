@@ -69,10 +69,44 @@ draw_set_alpha(1);
 //draw_healthbar(_guiCenterX + 32 + charOffset[0], _guiBottom - 64 + charOffset[1], _guiRight - 128 + charOffset[0], _guiBottom - 32 + charOffset[1], (charHealth / charHealthMax) * 100, merge_color(c_black, c_dkgray, 0.5), c_red, c_red, 0, 1, 1);
 
 
+#region Status Effects
+
+if ( pSirenSongTimer > 0 )
+{
+	var _statusOrigin = [ _guiLeft, _guiTop + 300 ];
+	draw_set_color(c_black);
+	draw_set_alpha(0.25);
+	draw_rectangle(_statusOrigin[0] - 64, _statusOrigin[1] - 45, _statusOrigin[0] + 300, _statusOrigin[1] + 45, 0);
+	draw_set_color(c_white);
+	draw_set_alpha(1.00);	
+	//draw_rectangle(_statusOrigin[0] - 64, _statusOrigin[1] - 45, _statusOrigin[0] + 256, _statusOrigin[1] + 45, 1);
+
+	draw_set_font(FntHudA);
+	draw_set_halign(fa_left);
+	draw_set_valign(fa_bottom);
+	var _string = "BUFF: Siren Song";
+	if ( pSirenSongStacks > 0 ) { _string += " Lv" + string(pSirenSongStacks); }
+	draw_text( _statusOrigin[0] + 8, _statusOrigin[1], _string );
+	
+	var _barWidth = 300 - 16;
+	draw_set_alpha(1.00);
+	draw_set_color(c_dkgray);
+	draw_rectangle(_statusOrigin[0] + 8, _statusOrigin[1] + 4, _statusOrigin[0] + 8 + _barWidth, _statusOrigin[1] + 25, 0);
+	draw_set_color(c_aqua);
+	draw_rectangle(_statusOrigin[0] + 8, _statusOrigin[1] + 4, _statusOrigin[0] + 8 + ( _barWidth * ( pSirenSongTimer / pSirenSongFrames ) ), _statusOrigin[1] + 25, 0);
+	
+	draw_set_color(c_white);
+	draw_line_width( _statusOrigin[0] + 8, _statusOrigin[1], _statusOrigin[0] + 8, _statusOrigin[1] + 29, 4 );
+	draw_line_width( _statusOrigin[0] + 8 + _barWidth, _statusOrigin[1], _statusOrigin[0] + 8 + _barWidth, _statusOrigin[1] + 29, 4 );
+	
+}
+
+#endregion
+
 
 #region Player Hud
 
-var _hudOrigin = [_guiCenterX, _guiBottom - 96];
+var _hudOrigin = [ _guiCenterX - charOffset[0], _guiBottom - 96 - charOffset[1] ];
 
 #region Decorative Elements
 
@@ -84,7 +118,7 @@ draw_sprite_ext(Spr_Hud_Decoration_Mid, 0, _hudOrigin[0], _hudOrigin[1] - 20, 0.
 
 #region Current Ability
 var _color = c_white;
-if ( pEnergy < pDashEnergyCost ) { _color = c_gray; }
+if ( pEnergy < pSkillEnergyCost || pSkillCooldownTimer > 0 ) { _color = c_gray; }
 draw_sprite_ext(Spr_Hud_Ability, 0, _hudOrigin[0] - 74, _hudOrigin[1] - 40, 0.8, 0.8, 0, _color, 1);
 #endregion
 
@@ -94,6 +128,12 @@ draw_sprite_ext(Spr_Hud_Element, playerElementCurrent, _hudOrigin[0] + 74, _hudO
 
 #region Health and Stamina Bars
 
+drawHpReal    = charHealth;
+drawSpReal    = pEnergy;
+
+drawHpDisplay = lerp(drawHpDisplay, drawHpReal, 0.5);
+drawSpDisplay = lerp(drawSpDisplay, drawSpReal, 0.5);
+
 draw_set_font(FntHudA);
 draw_set_alpha(1);
 draw_set_color(c_white);
@@ -102,7 +142,7 @@ draw_set_valign(fa_middle);
 draw_sprite_ext(Spr_Hud_BarFrame, 0, _hudOrigin[0], _hudOrigin[1],  1, 1, 0, c_white, 1);
 draw_sprite_ext(Spr_Hud_BarFrame, 0, _hudOrigin[0], _hudOrigin[1], -1, 1, 0, c_white, 1);
 
-var _percent = clamp(charHealth / charHealthMax, 0, 1);
+var _percent = clamp(drawHpDisplay / charHealthMax, 0, 1);
 draw_sprite_ext(Spr_Hud_BarFill, 0, _hudOrigin[0] + 66, _hudOrigin[1],  _percent, 1, 0, c_white, 1);
 draw_set_halign(fa_left);
 for( var i = 1; i >= 0; i--; )
@@ -111,7 +151,7 @@ for( var i = 1; i >= 0; i--; )
 	draw_text(_hudOrigin[0] + 56 - (i*2), _hudOrigin[1] + 36 + (i*2), "HP: " + string( floor(charHealth) ) + "/" + string(charHealthMax) );
 }
 
-var _percent = clamp(pEnergy / pEnergyMax, 0, 1);
+var _percent = clamp(drawSpDisplay / pEnergyMax, 0, 1);
 draw_sprite_ext(Spr_Hud_BarFill, 1, _hudOrigin[0] - 66, _hudOrigin[1], -_percent, 1, 0, c_white, 1);
 draw_set_halign(fa_right);
 for( var i = 1; i >= 0; i--; )

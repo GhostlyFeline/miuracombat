@@ -1,7 +1,21 @@
 /// @description Insert description here
 // You can write your code in this editor
 
+charOffset = [0, 0];
+
+charShakeTimer = -1;
+charShakeFrames = 5;
+charShakeDir = 0;
+charShakeDist = 0;
+charShakeAmp = 0;
+
 Character_Flash_Init();
+
+State_Sys_Init(State_Enemy_Appear, 120);
+stateNext = State_Enemy_Basic_Idle;
+stateNextLength = 180;
+
+enemyNeutralState = State_Enemy_Basic_Idle;
 
 enemyId = 0;
 
@@ -28,12 +42,6 @@ var _dir = random(360);
 enemyMoveTarget = [ ( room_width * 0.5 ) + lengthdir_x(_len, _dir), ( room_height * 0.5 ) + lengthdir_y(_len, _dir) ];		
 
 
-charOffset = [0, 0];
 
-charShakeTimer = -1;
-charShakeFrames = 5;
-charShakeDir = 0;
-charShakeDist = 0;
-charShakeAmp = 0;
 
 tick = 0;

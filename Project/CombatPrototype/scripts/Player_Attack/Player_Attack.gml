@@ -85,7 +85,7 @@ function State_Player_Attack(_status)
 				default:
 				case enumProjPlayerElement.spirit:
 					#region Spirit
-					if ( stateTick == 8 || stateTick == 11 || stateTick == 14 )
+					if ( stateTick == 8 || stateTick == 14 )
 					{
 						audio_play_sound(SndPlayerShot, 10, 0);
 						var _aimDir = point_direction(x, y, _targetPos[0], _targetPos[1]);
@@ -94,13 +94,13 @@ function State_Player_Attack(_status)
 						var _bullet = instance_create_layer(x, y, layer, ObjProjPlayer);
 						_bullet.projSpd = 50;
 						_bullet.projDir = _bulDir;
-						_bullet.damage = 5;
+						_bullet.damage = 10;
 						_bullet.stunDamage = 4;
 						_bullet.element = playerElementCurrent;		
 					
 					
 						pAttackNumber++;
-						if ( pAttackNumber >= 3 ) { pAttackVolleyFinished = true; }
+						if ( pAttackNumber >= 2 ) { pAttackVolleyFinished = true; }
 					}
 					#endregion
 					break;
@@ -200,7 +200,7 @@ function State_Player_Attack(_status)
 			{
 				if ( pAttackVolleyEndTick >= 0 )
 				{
-					if ( input_check("ability") && pDashCooldownTimer < 0 && pEnergy >= pDashEnergyCost )
+					if ( input_check("dash") && pDashCooldownTimer < 0 && pEnergy >= pDashEnergyCost )
 					{
 						State_Change(State_Player_Dash);
 						pEnergy -= pDashEnergyCost;
@@ -211,12 +211,22 @@ function State_Player_Attack(_status)
 						State_Change(State_Player_Breaker);
 						pElementSwap_animTimer = -1;
 					}
+					else
+					if ( input_check("skill") && pSkillCooldownTimer < 0 && pEnergy >= pSkillEnergyCost )
+					{
+						State_Change(State_Player_Skill_SirenSong);
+						pEnergy -= pSkillEnergyCost;
+						pElementSwap_animTimer = -1;
+					}
 				}
 				pAttackVolleyEndTick++;
 			}
 			
 			if ( pBreakerCooldownTimer >= 0 ) { pBreakerCooldownTimer--; }		
 			if ( pDashCooldownTimer    >= 0 ) { pDashCooldownTimer--;    }
+			if ( pSkillCooldownTimer   >= 0 ) { pSkillCooldownTimer--;   }
+			Player_Energy_Tick();
+			Player_Skills_Tick();
 						
 			#endregion
 			break;

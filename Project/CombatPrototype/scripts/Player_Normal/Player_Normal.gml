@@ -19,9 +19,9 @@ function State_Player_Normal(_status)
 			#region Tick Script
 			
 			Player_Move_Tick();
-			Player_Targeting_Tick();			
+			Player_Targeting_Tick();
 			
-			if ( input_check("ability") && pDashCooldownTimer < 0 && pEnergy >= pDashEnergyCost )
+			if ( input_check("dash") && pDashCooldownTimer < 0 && pEnergy >= pDashEnergyCost )
 			{
 				State_Change(State_Player_Dash);
 				pEnergy -= pDashEnergyCost;
@@ -30,6 +30,13 @@ function State_Player_Normal(_status)
 			if ( input_check("breaker") && pBreakerCooldownTimer < 0 )
 			{
 				State_Change(State_Player_Breaker);
+				pElementSwap_animTimer = -1;
+			}
+			else
+			if ( input_check("skill") && pSkillCooldownTimer < 0 && pEnergy >= pSkillEnergyCost )
+			{
+				State_Change(State_Player_Skill_SirenSong);
+				pEnergy -= pSkillEnergyCost;
 				pElementSwap_animTimer = -1;
 			}
 			else
@@ -42,6 +49,9 @@ function State_Player_Normal(_status)
 			if ( pAttackCooldownTimer  >= 0 ) { pAttackCooldownTimer--;  }
 			if ( pBreakerCooldownTimer >= 0 ) { pBreakerCooldownTimer--; }		
 			if ( pDashCooldownTimer    >= 0 ) { pDashCooldownTimer--;    }
+			if ( pSkillCooldownTimer   >= 0 ) { pSkillCooldownTimer--;   }
+			Player_Energy_Tick();
+			Player_Skills_Tick();
 			
 			#endregion
 			break;
