@@ -169,7 +169,8 @@ if ( battleRoundStartTimer >= 0 )
 	#endregion	
 	
 	
-	var _titleString = "ROUND " + string(battleRound);
+	var _titleString = "GET READY";
+	if ( battleRound > 1 ) { _titleString = "ROUND " + string(battleRound); }
 	
 	var _alpha = 1;
 	if ( _percent <= 0.1 ) { _alpha = lerp( 0, 1, _percent / 0.1 ); }	
