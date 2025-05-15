@@ -5,4 +5,5 @@ function Player_Breaker_Init()
 	pBreakerFrames = 35;
 	pBreakerCooldownTimer = -1;
 	pBreakerCooldownFrames = 60;
+	pBreakerEnergyCost = 10;
 }

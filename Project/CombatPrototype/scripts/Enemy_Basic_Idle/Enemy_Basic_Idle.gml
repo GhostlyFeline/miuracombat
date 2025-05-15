@@ -27,7 +27,7 @@ function State_Enemy_Basic_Idle(_status)
 			var _xSpd = 0;
 			var _ySpd = 0;
 	
-			var _speed = 4;
+			var _speed = 8;
 			var _dist = point_distance(x, y, enemyMoveTarget[0], enemyMoveTarget[1]);
 			if ( _dist >= _speed )
 			{
@@ -79,8 +79,9 @@ function State_Enemy_Basic_Idle(_status)
 			if ( _timer == 0 || _timer == 5 || _timer == 10 )
 			{
 				var _bullet = instance_create_layer(x, y, layer, ObjProjEnemy);
-				_bullet.projSpd = 12;
+				_bullet.projSpd = 16;
 				_bullet.projDir = point_direction(_bullet.x, _bullet.y, ObjPlayer.x, ObjPlayer.y);
+				_bullet.projScale = 2;
 				audio_sound_pitch(SndEnemyShot, random_range(0.95, 1.05) );
 				audio_play_sound(SndEnemyShot, 10, 0);
 			}

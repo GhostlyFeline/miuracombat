@@ -14,7 +14,7 @@ function RenderStunStars(_above = false)
 	for ( var i = 0; i < 5; i++; )
 	{
 		var _len = sprite_width * 0.75;
-		var _dir = ( (360 / 5) * i ) + ( enemyStunTimer * 4 );
+		var _dir = ( (360 / 5) * i ) + ( stateTick * 4 );
 		var _lX  = lengthdir_x(_len, _dir);
 		var _lY  = lengthdir_y(_len, _dir) * 0.25;
 		
@@ -27,7 +27,7 @@ function RenderStunStars(_above = false)
 }
 
 
-if ( enemyStunTimer >= 0 ) { RenderStunStars(false); }
+if ( stateCurrent == State_Enemy_Stunned ) { RenderStunStars(false); }
 
 var _string = "";
 switch(enemyWeakness)
@@ -91,7 +91,7 @@ draw_sprite_ext(sprite_index, image_index, _charDrawX, _charDrawY, image_xscale,
 shader_reset();
 
 
-if ( enemyStunTimer >= 0 ) { RenderStunStars(true); }
+if ( stateCurrent == State_Enemy_Stunned ) { RenderStunStars(true); }
 
 draw_set_color(c_white);
 draw_set_alpha(1);
@@ -99,5 +99,5 @@ draw_healthbar(x - 80, y + 64, x + 80, y + 80, (charHealth / charHealthMax) * 10
 
 
 var _stunBarAmt = enemyStun / enemyStunMax;
-if ( enemyStunTimer >= 0 ) { _stunBarAmt = enemyStunTimer / enemyStunFrames; }
+if ( stateCurrent == State_Enemy_Stunned ) { _stunBarAmt = 1 - ( stateTick / stateLength ); }
 draw_healthbar(x - 60, y + 80, x + 60, y + 90, _stunBarAmt * 100, merge_color(c_black, c_dkgray, 0.5), c_aqua, c_aqua, 0, 1, 1);

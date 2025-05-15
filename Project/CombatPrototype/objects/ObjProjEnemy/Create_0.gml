@@ -1,11 +1,12 @@
 /// @description Insert description here
 // You can write your code in this editor
 
-image_xscale = 1.2;
-image_yscale = 1.2;
+image_xscale = 1;
+image_yscale = 1;
 
 projSpd = 0;
 projDir = 0;
+projScale = 1.2;
 
 function BulletHit(_colInst = noone, _destroy = true)
 {	

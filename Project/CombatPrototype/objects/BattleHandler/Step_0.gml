@@ -8,9 +8,19 @@ if ( battleActive )
 	{
 		if ( instance_number(ObjEnemyTest) == 0 )
 		{
-			show_debug_message("VICTORY!");
-			with (ObjProjEnemy) { BulletHit(); }
-			battleWon = true;
+			if ( battleRound < battleRoundMax )
+			{
+				with (ObjProjEnemy) { BulletHit(); }
+				battleRoundStartTimer = battleRoundStartFrames;
+				battleRound++;				
+				battleRoundArray[battleRound-1]();
+			}
+			else
+			{
+				with (ObjProjEnemy) { BulletHit(); }
+				show_debug_message("VICTORY!");
+				battleWon = true;
+			}
 		}
 	}
 	else
@@ -40,3 +50,5 @@ if ( battleActive )
 		}
 	}
 }
+
+if ( battleRoundStartTimer >= 0 ) { battleRoundStartTimer--; }

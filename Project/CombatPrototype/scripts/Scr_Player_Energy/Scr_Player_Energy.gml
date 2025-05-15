@@ -5,7 +5,7 @@ function Player_Energy_Init()
 	pEnergyMax = 100;
 	pEnergy = pEnergyMax;
 	
-	pEnergyRegen = 10 / ( game_get_speed(gamespeed_fps) * 5 );
+	pEnergyRegen = 10 / ( game_get_speed(gamespeed_fps) * 3 );
 }
 
 

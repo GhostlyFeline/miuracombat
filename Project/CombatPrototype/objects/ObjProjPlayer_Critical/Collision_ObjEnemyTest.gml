@@ -19,12 +19,12 @@ with (other)
 	if (!_checkList)
 	{
 		var _damageVal = _self.damage;
-		if ( enemyStunTimer >= 0 )
+		if ( stateCurrent == State_Enemy_Stunned )
 		{
 			_damageVal *= _self.critMulti;
 			var _text = instance_create_layer(x, y, "TextAbove", ObjStunText );
 			_text.textString = "BREAK!";
-			enemyStunTimer = -1;
+			stateTick = stateLength;
 			tick = 0;
 			audio_play_sound(SndEnemyBreak, 100, 0);
 			

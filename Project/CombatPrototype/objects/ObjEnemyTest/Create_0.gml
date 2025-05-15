@@ -24,13 +24,13 @@ enemyDropItem = [enumItemType.potionSmall];
 
 enemyHitList = ds_list_create();
 
-charHealthMax = 300;
+charHealthMax = 200;
 charHealth = charHealthMax;
 
 enemyWeakness = choose(enumProjPlayerElement.spirit, enumProjPlayerElement.light, enumProjPlayerElement.ice, enumProjPlayerElement.fire);
 
 enemyStun = 0;
-enemyStunMax = 200;
+enemyStunMax = 100;
 enemyStunDegrade = 0.1;
 
 enemyStunTimer  = -1;

@@ -49,6 +49,20 @@ if ( instance_exists(ObjPlayerTarget.follow) )
 
 #endregion
 
+
+#region Spell Charge Circle
+
+if ( stateCurrent == State_Player_Spell_Charge ) 
+{
+	gpu_set_blendmode(bm_add);
+	draw_sprite_ext(SprSpellCircle, 0, x, y, 1.0, 1.0, stateTick * 2, c_white, 0.5);
+	draw_sprite_ext(SprSpellCircle, 0, x, y, 0.6, 0.6, stateTick * 4, c_white, 0.5);
+	gpu_set_blendmode(bm_normal);
+}
+
+#endregion
+
+
 #region Player Character
 
 draw_sprite_ext(SprPlayerCollider, 0, x, y, image_xscale, image_yscale, 0, c_white, image_alpha * 0.10);

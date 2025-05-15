@@ -9,8 +9,6 @@ function State_Player_Breaker(_status)
 		case enumStateStatus.init:
 			#region Init Script
 									
-			pBreakerCooldownTimer = pBreakerCooldownFrames;
-			
 			stateLength = pBreakerFrames;
 			
 			stateNext = State_Player_Normal;
@@ -85,9 +83,7 @@ function State_Player_Breaker(_status)
 			
 			if ( pAttackCooldownTimer  >= 0 ) { pAttackCooldownTimer--;  }	
 			if ( pDashCooldownTimer    >= 0 ) { pDashCooldownTimer--;    }
-			if ( pSkillCooldownTimer   >= 0 ) { pSkillCooldownTimer--;   }
 			Player_Energy_Tick();
-			Player_Skills_Tick();
 						
 			#endregion
 			break;

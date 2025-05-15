@@ -1,1 +1,1 @@
-window_set_caption("Merm Combat Sim");
+window_set_caption("[MERMAID COMBAT SIMULATION]");

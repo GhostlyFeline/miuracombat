@@ -4,11 +4,11 @@ function Player_Skills_Init()
 {
 	pSkillCooldownTimer  = 0;
 	pSkillCooldownFrames = 60;
-	pSkillEnergyCost = 30;
+	pSkillEnergyCost = 20;
 	
 	pSirenSongTimer = 0;
-	pSirenSongFrames = ( game_get_speed(gamespeed_fps) * 20 );	
-	pSirenSongHealthRegen = 10 / ( game_get_speed(gamespeed_fps) * 10 ); 
+	pSirenSongFrames = ( game_get_speed(gamespeed_fps) * 15 );	
+	pSirenSongHealthRegen = ( charHealthMax / 20 ) / ( game_get_speed(gamespeed_fps) * 5 ); 
 	pSirenSongStacks = 0;
 }
 

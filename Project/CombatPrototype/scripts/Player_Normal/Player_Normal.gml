@@ -27,13 +27,13 @@ function State_Player_Normal(_status)
 				pEnergy -= pDashEnergyCost;
 			}
 			else
-			if ( input_check("breaker") && pBreakerCooldownTimer < 0 )
+			if ( input_check("breaker") && pBreakerCooldownTimer < 0 && pEnergy >= pBreakerEnergyCost )
 			{
-				State_Change(State_Player_Breaker);
+				State_Change(State_Player_Spell_Charge);				
 				pElementSwap_animTimer = -1;
 			}
 			else
-			if ( input_check("skill") && pSkillCooldownTimer < 0 && pEnergy >= pSkillEnergyCost )
+			if ( input_check("skill") && pSkillCooldownTimer < 0 && pEnergy >= pSkillEnergyCost && pSirenSongStacks < 3 )
 			{
 				State_Change(State_Player_Skill_SirenSong);
 				pEnergy -= pSkillEnergyCost;

@@ -10,7 +10,7 @@ tick++;
 var _self = id;
 with (FxHandler)
 {
-	repeat (3)
+	repeat (5)
 	{
 		var _len = _self.pMoveBoundsCircleRadius + random_range(100, 400);
 		var _dir = random(360);
@@ -18,7 +18,6 @@ with (FxHandler)
 		var _lY  = lengthdir_y(_len, _dir);
 		
 		part_particles_create(fxSysGlobalAbove, _self.pMoveBoundsCirclePos[0] + _lX, _self.pMoveBoundsCirclePos[1] + _lY, fxType[enumFxType.wFxProj_borderCloud00], 1 );
-			
 	}
 		
 	var _num = 6;

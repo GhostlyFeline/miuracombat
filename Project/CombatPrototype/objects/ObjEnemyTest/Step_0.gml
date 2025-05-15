@@ -26,34 +26,10 @@ Character_Flash_Tick();
 
 if ( global.hitstopActive ) { exit; }
 
+if ( enemyStun >= enemyStunMax ) { State_Change(State_Enemy_Stunned); }
+else { enemyStun = max( enemyStun - enemyStunDegrade, 0 ); }
 
 State_Sys_Tick();
-
-if ( enemyStunTimer >= 0 )
-{
-	if ( enemyStunTimer mod 15 == 0 ) { Character_Flash_Activate(15, 1, merge_color(c_yellow, c_white, 0.5), 0.75, true, 100); }
-	enemyStunTimer--;
-	enemyStun = 0;
-}
-else
-{	
-	if ( enemyStun >= enemyStunMax )
-	{
-		audio_play_sound(SndEnemyStun, 100, 0);
-		enemyStun = 0;
-		enemyStunTimer = enemyStunFrames;
-		var _text = instance_create_layer(x, y, "TextAbove", ObjStunText );
-		_text.master = id;
-	}
-	else { enemyStun = max( enemyStun - enemyStunDegrade, 0 ); }
-}
-
-
-if ( enemyStunTimer < 0 && tick > 60 )
-{	
-	
-	
-}
 
 tick++;
 

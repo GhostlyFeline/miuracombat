@@ -51,6 +51,18 @@ function State_Player_Attack(_status)
 			if ( instance_exists(ObjPlayerTarget.follow) )
 			{
 				_targetPos = [ObjPlayerTarget.x, ObjPlayerTarget.y];
+				
+				var _targetDist = point_distance (x, y, ObjPlayerTarget.x, ObjPlayerTarget.y);
+				
+				var _leadDir = point_direction(ObjPlayerTarget.xprevious, ObjPlayerTarget.yprevious, ObjPlayerTarget.x, ObjPlayerTarget.y);
+				var _leadLen = point_distance (ObjPlayerTarget.xprevious, ObjPlayerTarget.yprevious, ObjPlayerTarget.x, ObjPlayerTarget.y);
+				
+				if ( _leadLen > 0 )
+				{
+					_targetPos[0] += lengthdir_x(_leadLen, _leadDir) * ( ( _targetDist / _leadLen ) + 1 );
+					_targetPos[1] += lengthdir_y(_leadLen, _leadDir) * ( ( _targetDist / _leadLen ) + 1 );
+				}
+				
 				if ( !pLockonHasTarget )
 				{
 					#region Rotate the character based on their current direction.
@@ -89,11 +101,10 @@ function State_Player_Attack(_status)
 					{
 						audio_play_sound(SndPlayerShot, 10, 0);
 						var _aimDir = point_direction(x, y, _targetPos[0], _targetPos[1]);
-						var _bulDir = _aimDir;
 			
 						var _bullet = instance_create_layer(x, y, layer, ObjProjPlayer);
-						_bullet.projSpd = 50;
-						_bullet.projDir = _bulDir;
+						_bullet.projSpd = 90;
+						_bullet.projDir = _aimDir;
 						_bullet.damage = 10;
 						_bullet.stunDamage = 4;
 						_bullet.element = playerElementCurrent;		
@@ -118,7 +129,7 @@ function State_Player_Attack(_status)
 							var _bulDir = _aimDir + lerp(-10, 10, i / (_bulletNum - 1) );
 			
 							var _bullet = instance_create_layer(x, y, layer, ObjProjPlayer);
-							_bullet.projSpd = 60;
+							_bullet.projSpd = 90;
 							_bullet.projDir = _bulDir;
 							_bullet.projScale *= 2.0;
 							_bullet.damage = 5;
@@ -149,7 +160,7 @@ function State_Player_Attack(_status)
 					
 						var _bullet = instance_create_layer(x + _lX, y + _lY, layer, ObjProjPlayer);
 						var _aimDir = point_direction(_bullet.x, _bullet.y, _targetPos[0], _targetPos[1]);
-						_bullet.projSpd = 40;
+						_bullet.projSpd = 90;
 						_bullet.projDir = _aimDir;
 						_bullet.projScale *= 3.0;
 						_bullet.damage = 15;
@@ -177,11 +188,10 @@ function State_Player_Attack(_status)
 					{
 						audio_play_sound(SndPlayerShot, 10, 0);
 						var _aimDir = point_direction(x, y, _targetPos[0], _targetPos[1]);
-						var _bulDir = _aimDir;
 			
 						var _bullet = instance_create_layer(x, y, layer, ObjProjPlayer);
-						_bullet.projSpd = 30;
-						_bullet.projDir = _bulDir;
+						_bullet.projSpd = 90;
+						_bullet.projDir = _aimDir;
 						_bullet.projScale *= 4;
 						_bullet.damage = 10;
 						_bullet.stunDamage = 8;
@@ -206,13 +216,13 @@ function State_Player_Attack(_status)
 						pEnergy -= pDashEnergyCost;
 					}
 					else
-					if ( input_check("breaker") && pBreakerCooldownTimer < 0 )
+					if ( input_check("breaker") && pBreakerCooldownTimer < 0 && pEnergy >= pBreakerEnergyCost )
 					{
-						State_Change(State_Player_Breaker);
+						State_Change(State_Player_Spell_Charge);				
 						pElementSwap_animTimer = -1;
 					}
 					else
-					if ( input_check("skill") && pSkillCooldownTimer < 0 && pEnergy >= pSkillEnergyCost )
+					if ( input_check("skill") && pSkillCooldownTimer < 0 && pEnergy >= pSkillEnergyCost && pSirenSongStacks < 3 )
 					{
 						State_Change(State_Player_Skill_SirenSong);
 						pEnergy -= pSkillEnergyCost;

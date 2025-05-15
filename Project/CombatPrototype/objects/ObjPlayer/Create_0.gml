@@ -1,6 +1,10 @@
 /// @description Insert description here
 // You can write your code in this editor
 
+charHealthMax = 100;
+charHealth = charHealthMax;
+invincible = false;
+
 State_Sys_Init(State_Player_Normal, -1);
 
 Character_Flash_Init();
@@ -16,18 +20,11 @@ Player_Breaker_Init();
 Player_Skills_Init();
 Player_Element_Menu_Init();
 
-
-charHealthMax = 200;
-charHealth = charHealthMax;
-
-
-
-
 tick = 0;
 
 
 
-invincible = false;
+
 pElementSwap_animTimer = -1;
 pElementSwap_frames = 3;
 
@@ -53,8 +50,8 @@ display_set_gui_size(1920, 1080);
 drawHpReal    = charHealth;
 drawHpDisplay = drawHpReal;
 
-drawSpReal    = pEnergy;
-drawSpDisplay = drawSpReal;
+drawMpReal    = pEnergy;
+drawMpDisplay = drawMpReal;
 
 
 

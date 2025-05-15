@@ -3,10 +3,13 @@
 
 with ( ObjPlayer )
 {
-	charHealth = charHealthMax;
 	State_Change(State_Player_Normal, -1);
 }
+
 with ( ObjEnemyTest ) { instance_destroy(); }
-xpTotal = 0;
+with ( ObjProjEnemy ) { instance_destroy(); }
+
 battleActive = false;
 battleWon = false;
+
+battleRound = 0;
