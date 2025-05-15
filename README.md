@@ -14,7 +14,7 @@ Gamepad Controls (Xbox Configuration):
 * X - Charge/Release Spell (Tap to use Breaker)
 * Y - Skill (Only Siren Song currently available, but can be powered up to Lv 3 with repeated use)
 * Right Bumper - Switch Target
-* Left Trigger - Select Element (Right stick to choose)
+* Left Trigger - Element Wheel (Right stick to choose)
 
 Debug Controls (Keyboard):
 * P - Start the battle scene from the beginning.
