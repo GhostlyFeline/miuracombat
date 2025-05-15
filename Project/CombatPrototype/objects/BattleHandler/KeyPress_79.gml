@@ -6,7 +6,7 @@ with ( ObjPlayer )
 	State_Change(State_Player_Normal, -1);
 }
 
-with ( ObjEnemyTest ) { instance_destroy(); }
+with ( ParEnemy ) { instance_destroy(); }
 with ( ObjProjEnemy ) { instance_destroy(); }
 
 battleActive = false;

@@ -36,7 +36,7 @@ function State_Enemy_Basic_Idle(_status)
 				_xSpd = lengthdir_x(_len, _dir);
 				_ySpd = lengthdir_y(_len, _dir);
 		
-				//move_and_collide( _xSpd, _ySpd, ObjEnemyTest );
+				//move_and_collide( _xSpd, _ySpd, ParEnemy );
 		
 				x += _xSpd;
 				y += _ySpd;

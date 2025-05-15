@@ -18,7 +18,7 @@ draw_set_color(c_white);
 draw_set_halign(fa_left);
 draw_set_valign(fa_top);
 
-//if ( instance_exists(ObjEnemyTest) )
+//if ( instance_exists(ParEnemy) )
 //{
 //	draw_text( _guiLeft + 8, _guiTop +  8, "Lowest Enemy Id: "  + string(battleEnemyIdLow ) );
 //	draw_text( _guiLeft + 8, _guiTop + 64, "Highest Enemy Id: " + string(battleEnemyIdHigh) );

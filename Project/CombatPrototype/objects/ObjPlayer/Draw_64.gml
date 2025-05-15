@@ -211,3 +211,5 @@ draw_sprite_ext(Spr_Hud_Portrait, 0, _hudOrigin[0], _hudOrigin[1], 1, 1, 0, c_wh
 #endregion
 
 #endregion
+
+

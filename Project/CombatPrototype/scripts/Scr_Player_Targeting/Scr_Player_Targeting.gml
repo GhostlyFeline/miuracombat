@@ -13,7 +13,7 @@ function Player_Target_Find(_findNearest = false)
 	{
 		var _self = id;
 		
-		if ( instance_exists(ObjEnemyTest) )
+		if ( instance_exists(ParEnemy) )
 		{
 			var _low  = BattleHandler.battleEnemyIdLow;
 			var _high = BattleHandler.battleEnemyIdHigh;	
@@ -27,7 +27,7 @@ function Player_Target_Find(_findNearest = false)
 			{
 				#region Simply find the nearest target.
 				
-				_targetInst = instance_nearest(x, y, ObjEnemyTest);
+				_targetInst = instance_nearest(x, y, ParEnemy);
 				_hasTarget = true;
 				
 				#endregion
@@ -39,7 +39,7 @@ function Player_Target_Find(_findNearest = false)
 				pLockonCurrentId++;
 				while ( !_hasTarget )
 				{
-					with ( ObjEnemyTest )
+					with ( ParEnemy )
 					{
 						if ( enemyId == _self.pLockonCurrentId )
 						{

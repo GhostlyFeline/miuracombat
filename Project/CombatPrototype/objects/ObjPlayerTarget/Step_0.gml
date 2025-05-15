@@ -13,7 +13,7 @@ if ( instance_exists(follow) )
 }
 else
 {
-	if ( instance_exists(ObjEnemyTest) ) { follow = instance_nearest(x, y, ObjEnemyTest); }
+	if ( instance_exists(ParEnemy) ) { follow = instance_nearest(x, y, ParEnemy); }
 	else { targCircleAlpha = lerp( targCircleAlpha, 0, 0.20 ); }
 	
 	if ( targCircleAlpha <= 0.01 )

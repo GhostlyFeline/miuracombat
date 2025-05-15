@@ -86,21 +86,27 @@ battleRoundArray[1] = function() {
 battleRoundArray[2] = function() {
 	#region Round 3
 	
-	var _spawnNum = 8;
-	spawnAngle += ( 360 / _spawnNum ) + 180;
-	for ( var i = 0; i < _spawnNum; i++; )
-	{
-		var _pos = [room_width * 0.5, room_height * 0.5];
-		var _len = 1080;
-		var _dir = spawnAngle + ( 360 * ( i / _spawnNum ) );
-		_pos[0] += lengthdir_x(_len, _dir);
-		_pos[1] += lengthdir_y(_len, _dir);
+	//var _spawnNum = 8;
+	//spawnAngle += ( 360 / _spawnNum ) + 180;
+	//for ( var i = 0; i < _spawnNum; i++; )
+	//{
+	//	var _pos = [room_width * 0.5, room_height * 0.5];
+	//	var _len = 1080;
+	//	var _dir = spawnAngle + ( 360 * ( i / _spawnNum ) );
+	//	_pos[0] += lengthdir_x(_len, _dir);
+	//	_pos[1] += lengthdir_y(_len, _dir);
+	//
+	//	var _enemy = instance_create_layer(_pos[0], _pos[1], layer, ObjEnemyTest);
+	//	_enemy.enemyId = global.enemySpawnIndex;
+	//	_enemy.enemyWeakness = global.enemySpawnIndex mod 4;
+	//	global.enemySpawnIndex++;
+	//}
 	
-		var _enemy = instance_create_layer(_pos[0], _pos[1], layer, ObjEnemyTest);
-		_enemy.enemyId = global.enemySpawnIndex;
-		_enemy.enemyWeakness = global.enemySpawnIndex mod 4;
-		global.enemySpawnIndex++;
-	}
+	var _pos = [room_width * 0.5, room_height * 0.5];
+	var _enemy = instance_create_layer(_pos[0], _pos[1], layer, ObjBossTest);
+	_enemy.enemyId = global.enemySpawnIndex;
+	_enemy.enemyWeakness = enumProjPlayerElement.spirit;
+	global.enemySpawnIndex++;
 	
 	#endregion
 }

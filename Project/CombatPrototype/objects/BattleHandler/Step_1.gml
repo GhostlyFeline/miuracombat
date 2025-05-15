@@ -5,7 +5,7 @@ var _self = id;
 
 ds_list_clear(battleEnemyList);
 
-with(ObjEnemyTest) { ds_list_add(_self.battleEnemyList, id); }
+with(ParEnemy) { ds_list_add(_self.battleEnemyList, id); }
 
 var _low  = 99;
 var _high = 0;

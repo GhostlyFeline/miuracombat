@@ -6,7 +6,7 @@ if ( battleActive )
 {
 	if ( !battleWon )
 	{
-		if ( instance_number(ObjEnemyTest) == 0 )
+		if ( instance_number(ParEnemy) == 0 )
 		{
 			if ( battleRound < battleRoundMax )
 			{

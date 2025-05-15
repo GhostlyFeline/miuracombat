@@ -3,6 +3,6 @@
 
 if ( ObjPlayer.stateCurrent == State_Player_Dying || ObjPlayer.stateCurrent == State_Player_Dead || ObjPlayer.stateCurrent == State_Player_Victory )
 {
-	with ( ObjEnemyTest ) { if ( stateCurrent != State_Enemy_GameOver ) { State_Change( State_Enemy_GameOver, -1, true ) } }	
+	with ( ParEnemy ) { if ( stateCurrent != State_Enemy_GameOver ) { State_Change( State_Enemy_GameOver, -1, true ) } }	
 	with ( ObjProjEnemy ) { BulletHit(); }	
 }
