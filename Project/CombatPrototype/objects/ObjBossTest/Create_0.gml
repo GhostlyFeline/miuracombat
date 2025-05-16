@@ -11,7 +11,7 @@ enemyNeutralState = State_BossTest_Idle;
 enemyDropXp = 10000;
 enemyDropItem = [enumItemType.potionSmall];
 
-charHealthMax = 3000;
+charHealthMax = 1000;
 charHealth = charHealthMax;
 
 drawHpReal    = charHealth;
@@ -21,8 +21,8 @@ bossName = "Angel of the Deep";
 
 enemyWeakness = choose(enumProjPlayerElement.spirit, enumProjPlayerElement.light, enumProjPlayerElement.ice, enumProjPlayerElement.fire);
 
-enemyStunMax = 100;
-enemyStunDegrade = 0.1;
+enemyStunMax = 300;
+enemyStunDegrade = 0.25;
 enemyStunFrames = 240;
 
 var _len = random(ObjPlayer.pMoveBoundsCircleRadius);

@@ -4,7 +4,7 @@ function Player_Skills_Init()
 {
 	pSkillCooldownTimer  = 0;
 	pSkillCooldownFrames = 60;
-	pSkillEnergyCost = 20;
+	pSkillEnergyCost = 30;
 	
 	pSirenSongTimer = 0;
 	pSirenSongFrames = ( game_get_speed(gamespeed_fps) * 15 );	
