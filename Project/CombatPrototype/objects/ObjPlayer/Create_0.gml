@@ -28,7 +28,7 @@ tick = 0;
 pElementSwap_animTimer = -1;
 pElementSwap_frames = 3;
 
-
+pHudStyleToggle = false;
 
 screenShakeTimer = -1;
 screenShakeFrames = 5;

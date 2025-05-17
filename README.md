@@ -19,3 +19,4 @@ Gamepad Controls (Xbox Configuration):
 Debug Controls (Keyboard):
 * P - Start the battle scene from the beginning.
 * O - Cancel the current battle.
+* H - Toggle between HUD styles.

@@ -203,3 +203,13 @@ if ( battleRoundStartTimer >= 0 )
 	
 	#endregion
 }
+
+
+draw_set_font(FntHudA_Small);
+draw_set_color(c_white);
+draw_set_alpha(1);
+draw_set_halign(fa_right);
+draw_set_valign(fa_bottom);
+
+var _string = "Debug Controls:\nP - Start Battle\nO - Cancel Battle\nH - Toggle Hud Style";
+draw_text(_guiRight - 8, _guiBottom - 8, _string);
