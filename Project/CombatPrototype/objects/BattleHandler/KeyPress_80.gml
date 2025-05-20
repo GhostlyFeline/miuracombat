@@ -8,6 +8,7 @@ with ( ObjPlayer )
 	x = room_width  * 0.5;
 	y = room_height * 0.5;
 	charHealth = charHealthMax;
+	pLimit = 0;
 	State_Change(State_Player_Normal, -1);
 }
 

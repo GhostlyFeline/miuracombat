@@ -26,6 +26,9 @@ Character_Flash_Tick();
 
 if ( global.hitstopActive ) { exit; }
 
+if ( enemyStunMultiTimer >= 0 ) { enemyStunMultiTimer--; }
+else { enemyStunMulti = 1; }
+
 if ( enemyStun >= enemyStunMax ) { State_Change(State_Enemy_Stunned); }
 else { enemyStun = max( enemyStun - enemyStunDegrade, 0 ); }
 
@@ -46,7 +49,7 @@ if ( charHealth <= 0 )
 		part_particles_create(fxSysGlobalAbove, _self.x, _self.y, fxType[enumFxType.eFxEnemy_explodeSpark01], 8 );
 	}
 	
-	audio_play_sound(SndEnemyExplode, 10, 0);
+	Sound_Play(enumSoundFxList.enemyExplode);
 	
 	var _text = instance_create_layer(x, y, "TextAbove", ObjXpNumber );
 	_text.damage = enemyDropXp;

@@ -33,11 +33,16 @@ function State_Player_Normal(_status)
 				pElementSwap_animTimer = -1;
 			}
 			else
-			if ( input_check("skill") && pSkillCooldownTimer < 0 && pEnergy >= pSkillEnergyCost && pSirenSongStacks < 3 )
+			if ( input_check("skill") && pSkillCooldownTimer < 0 && pEnergy >= pSkillEnergyCost )
 			{
-				State_Change(State_Player_Skill_SirenSong);
-				pEnergy -= pSkillEnergyCost;
-				pElementSwap_animTimer = -1;
+				var _canSkill = true;
+				if ( pSkillCurrent == State_Player_Skill_SirenSong && pSirenSongStacks >= 3 ) { _canSkill = false; }
+				if ( _canSkill )
+				{
+					State_Change(pSkillCurrent);
+					pEnergy -= pSkillEnergyCost;
+					pElementSwap_animTimer = -1;
+				}
 			}
 			else
 			if ( input_check("shoot") && pAttackCooldownTimer < 0 ) 

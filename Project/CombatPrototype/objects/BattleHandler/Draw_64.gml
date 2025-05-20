@@ -139,8 +139,8 @@ if ( battleRoundStartTimer >= 0 )
 	
 	var _percent = battleRoundStartTimer / battleRoundStartFrames;
 	
-	var _colorA = merge_color( c_yellow, c_black, 0.66);
-	var _colorB = merge_color( c_yellow, c_white, 0.66);
+	var _colorA = merge_color( c_aqua, c_black, 0.66);
+	var _colorB = merge_color( c_aqua, c_white, 0.66);
 		
 	var _baseColor = _colorB;
 	var _barEmptyColor = merge_color(_baseColor, c_dkgray, 0.80);
@@ -176,9 +176,6 @@ if ( battleRoundStartTimer >= 0 )
 	if ( _percent <= 0.1 ) { _alpha = lerp( 0, 1, _percent / 0.1 ); }	
 	if ( _percent >= 0.9 ) { _alpha = lerp( 1, 0, (_percent - 0.9) / 0.1 ); }
 	var _textScl = lerp( 1.2, 1.5, 1 - _percent );
-	
-	var _colorA = merge_color( c_yellow, c_black, 0.66);
-	var _colorB = merge_color( c_yellow, c_white, 0.66);
 	
 	draw_set_alpha(1 * _alpha);
 	draw_set_font(FntWinScreenA);

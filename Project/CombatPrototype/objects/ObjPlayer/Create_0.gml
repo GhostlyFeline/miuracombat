@@ -19,16 +19,22 @@ Player_Shoot_Init();
 Player_Breaker_Init();
 Player_Skills_Init();
 Player_Element_Menu_Init();
+Player_Skill_Menu_Init();
 
 tick = 0;
 
 
+pLimit = 0;
+pLimitMax = 100;
+
+
+graze = false;
 
 
 pElementSwap_animTimer = -1;
 pElementSwap_frames = 3;
 
-pHudStyleToggle = false;
+pHudStyleToggle = true;
 
 screenShakeTimer = -1;
 screenShakeFrames = 5;
@@ -54,11 +60,13 @@ drawMpReal    = pEnergy;
 drawMpDisplay = drawMpReal;
 
 
+squishScl = [1, 1];
+
 
 function PlayerHit(_damage)
 {		
 	charHealth = max( charHealth - _damage, 0 );
-	audio_play_sound(SndPlayerHit, 10, 0);
+	Sound_Play(enumSoundFxList.playerHit);
 	
 	charShakeFrames = 30;
 	charShakeTimer  = charShakeFrames;
@@ -72,4 +80,7 @@ function PlayerHit(_damage)
 	global.hitstopDelay = 2;
 	
 	Character_Flash_Activate(8, 1, c_red, 1.0, true, 100);
+	
+	var _limitGainCalc = ( _damage / charHealthMax ) * 50;
+	pLimit = min( pLimit + _limitGainCalc, pLimitMax );
 }

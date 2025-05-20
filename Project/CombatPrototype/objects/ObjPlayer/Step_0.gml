@@ -10,7 +10,7 @@ tick++;
 var _self = id;
 with (FxHandler)
 {
-	repeat (5)
+	repeat (10)
 	{
 		var _len = _self.pMoveBoundsCircleRadius + random_range(100, 400);
 		var _dir = random(360);
@@ -36,7 +36,11 @@ with (FxHandler)
 
 if ( global.hitstopActive ) { exit; }
 
-if ( !Player_Element_Menu_Tick() )
+var _menuOpen = false;
+if ( Player_Element_Menu_Tick() ) { _menuOpen = true; }
+if ( Player_Skill_Menu_Tick()   ) { _menuOpen = true; }
+
+if ( !_menuOpen )
 {
 	State_Sys_Tick();
 }

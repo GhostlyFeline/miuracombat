@@ -9,6 +9,10 @@ function State_Player_Dash(_status)
 		case enumStateStatus.init:
 			#region Init Script
 						
+			sprite_index = SprPlayerIdle;
+			image_index  = 0;
+			image_speed  = 2;			
+			
 			#region Start the dash, setting the initial direction to where the player is inputting.
 			
 			var _moveAxisX = input_check("right") - input_check("left");
@@ -19,7 +23,7 @@ function State_Player_Dash(_status)
 			pMoveXspd = lengthdir_x(40, _dashInitDir);
 			pMoveYspd = lengthdir_y(40, _dashInitDir);
 				
-			audio_play_sound(SndPlayerDash, 10, 0);
+			Sound_Play(enumSoundFxList.playerDash);
 			
 			#endregion
 									
@@ -37,6 +41,8 @@ function State_Player_Dash(_status)
 			Player_Move_Tick();
 			Player_Targeting_Tick();
 			
+			squishScl = [1.2, 0.8];
+						
 			pMoveSpeedMulti = 2;
 			pMoveEaseMulti = 0.20;
 			invincible = true;
@@ -78,6 +84,9 @@ function State_Player_Dash(_status)
 			#region Abort Script
 			
 			#region End the dash.
+			
+			squishScl = [1, 1];
+			
 			pMoveSpeedMulti = 1;
 			pMoveEaseMulti = 1;
 		

@@ -99,7 +99,7 @@ function State_Player_Attack(_status)
 					#region Spirit
 					if ( stateTick == 8 || stateTick == 14 )
 					{
-						audio_play_sound(SndPlayerShot, 10, 0);
+						Sound_Play(enumSoundFxList.playerShot00);
 						var _aimDir = point_direction(x, y, _targetPos[0], _targetPos[1]);
 			
 						var _bullet = instance_create_layer(x, y, layer, ObjProjPlayer);
@@ -120,7 +120,7 @@ function State_Player_Attack(_status)
 					#region Light
 					if ( stateTick == 8 )
 					{
-						audio_play_sound(SndPlayerShot, 10, 0);
+						Sound_Play(enumSoundFxList.playerShot00);
 						var _bulletNum = 3;
 		
 						for (var i = 0; i < _bulletNum; i++;)
@@ -151,7 +151,7 @@ function State_Player_Attack(_status)
 				
 					if ( stateTick == 8 || stateTick == 16 || stateTick == 24 )
 					{
-						audio_play_sound(SndPlayerShot, 10, 0);
+						Sound_Play(enumSoundFxList.playerShot00);
 										
 						var _len = 128;
 						var _dir = ( (360 / 3) * pAttackNumber ) + point_direction(x, y, _targetPos[0], _targetPos[1]);
@@ -186,7 +186,7 @@ function State_Player_Attack(_status)
 					#region Ice
 					if ( stateTick == 8 )
 					{
-						audio_play_sound(SndPlayerShot, 10, 0);
+						Sound_Play(enumSoundFxList.playerShot00);
 						var _aimDir = point_direction(x, y, _targetPos[0], _targetPos[1]);
 			
 						var _bullet = instance_create_layer(x, y, layer, ObjProjPlayer);
@@ -224,7 +224,7 @@ function State_Player_Attack(_status)
 					else
 					if ( input_check("skill") && pSkillCooldownTimer < 0 && pEnergy >= pSkillEnergyCost && pSirenSongStacks < 3 )
 					{
-						State_Change(State_Player_Skill_SirenSong);
+						State_Change(pSkillCurrent);
 						pEnergy -= pSkillEnergyCost;
 						pElementSwap_animTimer = -1;
 					}

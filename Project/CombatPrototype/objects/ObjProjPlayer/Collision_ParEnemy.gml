@@ -18,11 +18,12 @@ with (other)
 	
 	if (!_checkList)
 	{
-		var _stunVal = _self.stunDamage;
+		var _dmgVal = floor(_self.damage * _self.magmaAuraMulti);
+		var _stunVal = _self.stunDamage * enemyStunMulti;
 		if ( _self.element = enemyWeakness ) { _stunVal *= 3; }
 		
 		ds_list_add(enemyHitList, _self);
-		charHealth -= _self.damage;
+		charHealth -= _dmgVal;
 		enemyStun += _stunVal;
 	
 		charShakeFrames = 10;
@@ -34,9 +35,9 @@ with (other)
 		var _lX  = lengthdir_x(_len, _dir);
 		var _lY  = lengthdir_y(_len, _dir);
 		var _text = instance_create_layer(_self.x + _lX, _self.y + _lY, "TextAbove", ObjDamageNumber );
-		_text.damage = _self.damage;
+		_text.damage = _dmgVal;
 	
-		audio_play_sound(SndEnemyHit, 10, 0);
+		Sound_Play(enumSoundFxList.enemyHit);
 		with (_self) { BulletHit(other, !penetrate); }
 	}
 }

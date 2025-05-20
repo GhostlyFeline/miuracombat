@@ -71,7 +71,7 @@ function Player_Element_Menu_Tick()
 					break;
 			}
 				
-			audio_play_sound(SndPlayerSwitchElement, 10, 0);		
+			Sound_Play(enumSoundFxList.playerSwitchElement);
 			show_debug_message("ELEMENT: " + string(playerElementCurrent) );
 			pElementSwap_animTimer = pElementSwap_frames;
 			_dismiss = true;

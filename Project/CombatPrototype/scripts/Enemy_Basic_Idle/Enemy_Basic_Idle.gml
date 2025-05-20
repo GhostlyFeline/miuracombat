@@ -83,7 +83,7 @@ function State_Enemy_Basic_Idle(_status)
 				_bullet.projDir = point_direction(_bullet.x, _bullet.y, ObjPlayer.x, ObjPlayer.y);
 				_bullet.projScale = 2;
 				audio_sound_pitch(SndEnemyShot, random_range(0.95, 1.05) );
-				audio_play_sound(SndEnemyShot, 10, 0);
+				Sound_Play(enumSoundFxList.enemyShot00);
 			}
 			
 			#endregion

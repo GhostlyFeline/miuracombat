@@ -10,7 +10,7 @@ function State_Player_Skill_SirenSong(_status)
 			#region Init Script
 						
 			audio_sound_pitch(SndPlayerSirenSong, 1 + (min(pSirenSongStacks, 2) * 0.12) );
-			audio_play_sound(SndPlayerSirenSong, 10, 0);
+			Sound_Play(enumSoundFxList.playerSirenSong);
 			
 			pSirenSongTimer = pSirenSongFrames;
 			
@@ -34,6 +34,7 @@ function State_Player_Skill_SirenSong(_status)
 			Player_Targeting_Tick();
 			
 			pMoveSpeedMulti = 0.33;
+			pSirenSongTimer = pSirenSongFrames;
 			
 			if ( stateTick mod 5 == 0 )
 			{

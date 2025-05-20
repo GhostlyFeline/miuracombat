@@ -23,6 +23,10 @@ enum enumFxType
 	
 	pFxPlayer_skillSirenNote00,
 	
+	pFxPlayer_skillIceSpark00,
+	
+	pFxPlayer_skillMagmaChargeSpark00,
+	
 	pFxProj_spiritHitFlash00,
 	pFxProj_spiritHitSpark00,
 	
@@ -124,6 +128,26 @@ part_type_speed(fxType[_entry], 0, 1, 0, 0);
 part_type_direction(fxType[_entry], 0, 360, 0, 0);
 part_type_orientation(fxType[_entry], -5, 5, 0, 0, false);
 part_type_life(fxType[_entry], 60, 60);
+
+var _entry = enumFxType.pFxPlayer_skillIceSpark00;
+fxType[_entry] = part_type_create();
+part_type_sprite(fxType[_entry], SprFxProjImpactFlash, 0, 0, 0);
+part_type_size(fxType[_entry], 0, 0, 0.10, 0 );
+part_type_alpha2(fxType[_entry], 0.2, 0 );
+part_type_color3(fxType[_entry], c_white, c_aqua, c_blue );
+part_type_blend(fxType[_entry], true);
+part_type_life(fxType[_entry], 15, 15);
+
+var _entry = enumFxType.pFxPlayer_skillMagmaChargeSpark00;
+fxType[_entry] = part_type_create();
+part_type_sprite(fxType[_entry], SprFxProjImpactFlash, 0, 0, 0);
+part_type_size(fxType[_entry], 0.3, 1.0, -0.01, 0 );
+part_type_alpha3(fxType[_entry], 1.0, 1.0, 0 );
+part_type_color3(fxType[_entry], c_orange, c_red, c_maroon );
+part_type_blend(fxType[_entry], true);
+part_type_speed(fxType[_entry], 2, 4, 0, 0);
+part_type_direction(fxType[_entry], 90, 90, 0, 0);
+part_type_life(fxType[_entry], 30, 30);
 
 
 #region Player Projectiles

@@ -4,7 +4,6 @@
 //if ( global.hitstopActive ) { exit; }
 
 
-
 if ( charShakeTimer >= 0 )
 {
 	var _shakePos = [0, 0];
@@ -40,7 +39,7 @@ if ( _focusDist >= 0 )
 {
 	var _percent = clamp( (_focusDist - 0) / 1080, 0, 1);
 	var _standardSize = [1920, 1080];
-	var _maxZoomOut = 2.5;
+	var _maxZoomOut = 3.0;
 	
 	var _oldSize = [camera_get_view_width(_camera), camera_get_view_height(_camera)];
 	var _newSize = [ lerp(_standardSize[0], _standardSize[0] * _maxZoomOut, _percent), lerp(_standardSize[1], _standardSize[1] * _maxZoomOut, _percent) ];

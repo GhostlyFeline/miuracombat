@@ -11,7 +11,7 @@ function State_Player_Spell_Charge(_status)
 						
 			sprite_index = SprPlayerAttack;
 			image_speed = 0;
-			image_index = 2;
+			image_index = 0;
 			
 			stateLength = -1;
 						
@@ -27,9 +27,14 @@ function State_Player_Spell_Charge(_status)
 			Player_Move_Tick();
 			Player_Targeting_Tick();
 			
+			if ( stateTick <= 10 ) { image_index = lerp(0, 2, stateTick / 10); }
+			
 			pMoveSpeedMulti = 0.33;
 			
 			if ( stateTick mod 5 == 0 ) { Character_Flash_Activate(5, 1, merge_color(c_aqua, c_white, 0.66), 0.25, true, 10); }
+			charShakeFrames = 5;
+			charShakeTimer  = charShakeFrames;
+			charShakeAmp = 2;
 			
 			if ( !input_check("breaker") )
 			{

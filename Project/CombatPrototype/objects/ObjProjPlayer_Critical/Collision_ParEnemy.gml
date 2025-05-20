@@ -18,7 +18,7 @@ with (other)
 	
 	if (!_checkList)
 	{
-		var _damageVal = _self.damage;
+		var _damageVal = floor(_self.damage * _self.magmaAuraMulti);
 		if ( stateCurrent == State_Enemy_Stunned )
 		{
 			_damageVal *= _self.critMulti;
@@ -26,7 +26,7 @@ with (other)
 			_text.textString = "BREAK!";
 			stateTick = stateLength;
 			tick = 0;
-			audio_play_sound(SndEnemyBreak, 100, 0);
+			Sound_Play(enumSoundFxList.enemyBreak);
 			
 			global.hitstopTimer = 10;
 			global.hitstopDelay = 2;
@@ -35,11 +35,13 @@ with (other)
 			{	
 				part_particles_create(fxSysGlobalBelow, other.x, other.y, fxType[enumFxType.pFxProj_breakerCritTri00], 8 );
 			}
+			
+			ObjPlayer.pLimit = min(ObjPlayer.pLimit + 20, ObjPlayer.pLimitMax);
 		}
 		
 		ds_list_add(enemyHitList, _self);
 		charHealth -= _damageVal;
-		enemyStun += _self.stunDamage;
+		enemyStun += _self.stunDamage * enemyStunMulti;
 	
 		charShakeFrames = 10;
 		charShakeTimer  = charShakeFrames;
@@ -53,7 +55,7 @@ with (other)
 		_text.damage = _damageVal;
 		_text.fadeFrames = 60;
 	
-		audio_play_sound(SndEnemyHit, 10, 0);
+		Sound_Play(enumSoundFxList.enemyHit);
 		with (_self) { BulletHit(other, !penetrate); }
 	}
 }

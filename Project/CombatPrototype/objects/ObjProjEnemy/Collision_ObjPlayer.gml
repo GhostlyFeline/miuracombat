@@ -24,6 +24,6 @@ else
 	{
 		part_particles_create(fxSysGlobalBelow, _self.x, _self.y, fxType[enumFxType.pFxPlayer_grazeSpark00], 5 );
 	}
-	
-	audio_play_sound(SndPlayerGraze, 10, 0);
+	other.graze = true;
+	Sound_Play(enumSoundFxList.playerGraze);
 }

@@ -9,7 +9,7 @@ function State_Enemy_Stunned(_status)
 		case enumStateStatus.init:
 			#region Init Script
 			
-			audio_play_sound(SndEnemyStun, 100, 0);
+			Sound_Play(enumSoundFxList.enemyStun);
 			
 			stateLength = enemyStunFrames;
 			

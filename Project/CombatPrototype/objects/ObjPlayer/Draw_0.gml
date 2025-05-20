@@ -33,7 +33,22 @@ draw_set_color(c_aqua);
 draw_set_alpha(0.10);
 draw_set_circle_precision(64);
 draw_circle(pMoveBoundsCirclePos[0], pMoveBoundsCirclePos[1], pMoveBoundsCircleRadius + 160, 0);
+
+if ( pMagmaAuraTimer > 0 )
+{
+	gpu_set_blendmode(bm_add);
+	draw_set_alpha(0.33);
+	draw_circle_color(x, y, 512, c_red, c_black, 0);
+	draw_circle_color(x, y, 448, merge_color(c_red   , c_orange, 0.50), c_black, 0);
+	draw_circle_color(x, y, 384, merge_color(c_orange, c_yellow, 0.50), c_black, 0);
+	draw_set_alpha(0.50);
+	//draw_circle_color(x, y, 512, c_black, merge_color(c_red, c_orange, 0.33), 0);
+	gpu_set_blendmode(bm_normal);
+}
+
+
 draw_set_circle_precision(24);
+
 
 #region Aiming Line
 
@@ -55,8 +70,14 @@ if ( instance_exists(ObjPlayerTarget.follow) )
 if ( stateCurrent == State_Player_Spell_Charge ) 
 {
 	gpu_set_blendmode(bm_add);
-	draw_sprite_ext(SprSpellCircle, 0, x, y, 1.0, 1.0, stateTick * 2, c_white, 0.5);
-	draw_sprite_ext(SprSpellCircle, 0, x, y, 0.6, 0.6, stateTick * 4, c_white, 0.5);
+	for ( var i = 0; i < 6; i++; )
+	{
+		var _scl    = lerp(0.5, 2.0, i / 5);
+		var _alpha  = lerp(0.3, 0.0, i / 5);
+		var _rotSpd = lerp(2.0, 0.5, i / 5);
+		var _flip   = lerp( 1, -1, i mod 2 )
+		draw_sprite_ext(SprSpellCircle, 0, x, y, _scl, _scl * _flip, stateTick * _rotSpd, c_white, _alpha);
+	}
 	gpu_set_blendmode(bm_normal);
 }
 
@@ -96,7 +117,7 @@ for ( var i = 0; i < 6; i++; )
 		var _lY  = lengthdir_y(_len, _dir);
 		var _alpha = lerp(0.15, 0.00, j / 3);
 	
-		draw_sprite_ext(sprite_index, image_index, _charDrawX + _lX, _charDrawY + _lY, image_xscale, image_yscale, image_angle, image_blend, image_alpha * _alpha);
+		draw_sprite_ext(sprite_index, image_index, _charDrawX + _lX, _charDrawY + _lY, image_xscale * squishScl[0], image_yscale * squishScl[1], image_angle, image_blend, image_alpha * _alpha);
 	}
 }
 gpu_set_blendmode(bm_normal);
@@ -117,7 +138,7 @@ else { shader_set_uniform_f(_colorFlashUniform, 1, 1, 1, 0); }
 
 draw_set_color(c_white);
 draw_set_alpha(1);
-draw_sprite_ext(sprite_index, image_index, _charDrawX, _charDrawY, image_xscale, image_yscale, image_angle, image_blend, image_alpha);
+draw_sprite_ext(sprite_index, image_index, _charDrawX, _charDrawY, image_xscale * squishScl[0], image_yscale * squishScl[1], image_angle, image_blend, image_alpha);
 shader_reset();
 
 #endregion

@@ -33,8 +33,12 @@ enemyStun = 0;
 enemyStunMax = 100;
 enemyStunDegrade = 0.1;
 
+
 enemyStunTimer  = -1;
 enemyStunFrames = 240;
+
+enemyStunMulti = 1;
+enemyStunMultiTimer = 0;
 
 
 var _len = random(ObjPlayer.pMoveBoundsCircleRadius);

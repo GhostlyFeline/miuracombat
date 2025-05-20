@@ -4,3 +4,5 @@
 ds_list_destroy(battleEnemyList);
 delete itemDropArray;
 delete battleRoundArray;
+
+Sound_Cleanup();

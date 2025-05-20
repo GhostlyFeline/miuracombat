@@ -14,6 +14,10 @@ penetrate = false;
 damage = 5;
 stunDamage = 10;
 
+
+magmaAuraMulti = 1;
+
+
 projMovePause = false;
 
 function BulletHit(_colInst = noone, _destroy = true)

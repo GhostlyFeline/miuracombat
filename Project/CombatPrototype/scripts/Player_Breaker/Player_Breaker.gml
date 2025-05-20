@@ -67,7 +67,7 @@ function State_Player_Breaker(_status)
 		
 			if ( stateTick == round(stateLength * 0.5) )
 			{
-				audio_play_sound(SndPlayerBreaker, 10, 0);
+				Sound_Play(enumSoundFxList.playerBreaker);
 				var _aimDir = point_direction(x, y, _targetPos[0], _targetPos[1]);
 				var _bulDir = _aimDir;
 			

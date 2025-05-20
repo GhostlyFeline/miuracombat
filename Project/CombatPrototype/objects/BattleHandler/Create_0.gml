@@ -11,6 +11,9 @@ enum enumItemType
 global.enemySpawnIndex = 0;
 global.levelGenericPauseTimer = -1;
 
+
+Sound_Init();
+
 spawnAngle = 0;
 
 xpTotal = 0;
@@ -52,7 +55,7 @@ battleRoundArray[0] = function() {
 		_pos[0] += lengthdir_x(_len, _dir);
 		_pos[1] += lengthdir_y(_len, _dir);
 	
-		var _enemy = instance_create_layer(_pos[0], _pos[1], layer, ObjEnemyTest);
+		var _enemy = instance_create_layer(_pos[0], _pos[1], "GameplayInst", ObjEnemyTest);
 		_enemy.enemyId = global.enemySpawnIndex;
 		_enemy.enemyWeakness = global.enemySpawnIndex mod 4;
 		global.enemySpawnIndex++;
@@ -74,7 +77,7 @@ battleRoundArray[1] = function() {
 		_pos[0] += lengthdir_x(_len, _dir);
 		_pos[1] += lengthdir_y(_len, _dir);
 	
-		var _enemy = instance_create_layer(_pos[0], _pos[1], layer, ObjEnemyTest);
+		var _enemy = instance_create_layer(_pos[0], _pos[1], "GameplayInst", ObjEnemyTest);
 		_enemy.enemyId = global.enemySpawnIndex;
 		_enemy.enemyWeakness = global.enemySpawnIndex mod 4;
 		global.enemySpawnIndex++;
@@ -96,14 +99,14 @@ battleRoundArray[2] = function() {
 	//	_pos[0] += lengthdir_x(_len, _dir);
 	//	_pos[1] += lengthdir_y(_len, _dir);
 	//
-	//	var _enemy = instance_create_layer(_pos[0], _pos[1], layer, ObjEnemyTest);
+	//	var _enemy = instance_create_layer(_pos[0], _pos[1], "GameplayInst", ObjEnemyTest);
 	//	_enemy.enemyId = global.enemySpawnIndex;
 	//	_enemy.enemyWeakness = global.enemySpawnIndex mod 4;
 	//	global.enemySpawnIndex++;
 	//}
 	
 	var _pos = [room_width * 0.5, room_height * 0.5];
-	var _enemy = instance_create_layer(_pos[0], _pos[1], layer, ObjBossTest);
+	var _enemy = instance_create_layer(_pos[0], _pos[1], "GameplayInst", ObjBossTest);
 	_enemy.enemyId = global.enemySpawnIndex;
 	_enemy.enemyWeakness = enumProjPlayerElement.spirit;
 	global.enemySpawnIndex++;

@@ -20,6 +20,8 @@ damage = 20;
 stunDamage = 0;
 critMulti = 3;
 
+magmaAuraMulti = 1;
+
 function BulletHit(_colInst = noone, _destroy = true)
 {
 	var _self = id;

@@ -6,3 +6,6 @@ if ( ObjPlayer.stateCurrent == State_Player_Dying || ObjPlayer.stateCurrent == S
 	with ( ParEnemy ) { if ( stateCurrent != State_Enemy_GameOver ) { State_Change( State_Enemy_GameOver, -1, true ) } }	
 	with ( ObjProjEnemy ) { BulletHit(); }	
 }
+
+Sound_Active_Play();
+Sound_Active_Reset();
