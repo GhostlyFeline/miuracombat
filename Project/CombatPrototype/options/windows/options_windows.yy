@@ -4,7 +4,7 @@
   "name": "Windows",
   "option_windows_display_name": "Mermaid Combat Sim",
   "option_windows_executable_name": "${project_name}.exe",
-  "option_windows_version": "1.0.0.0",
+  "option_windows_version": "0.1.0.0",
   "option_windows_company_info": "Ghostly Feline Games",
   "option_windows_product_info": "Mermaid Combat Sim",
   "option_windows_copyright_info": "GhostlyFeline 2025",

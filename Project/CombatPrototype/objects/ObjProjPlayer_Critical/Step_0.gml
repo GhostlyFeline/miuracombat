@@ -5,8 +5,8 @@ if ( global.hitstopActive ) { exit; }
 
 image_angle = projDir;
 
-image_xscale = projScale * 30; //15
-image_yscale = projScale * 30; //6
+image_xscale = projScale; //15
+image_yscale = projScale; //6
 
 x += lengthdir_x(projSpd, projDir);
 y += lengthdir_y(projSpd, projDir);

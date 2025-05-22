@@ -17,6 +17,8 @@ function Sound_Init() {
 		playerIceShield,
 		playerIceParry,
 		playerMagmaAura,
+		playerSpellCharge,
+		playerSpellChargeFinish,
 		
 		enemyShot00,
 		enemyHit,
@@ -104,6 +106,34 @@ function Sound_Init() {
 				var _item = ds_map_create();
 			
 				_item[? "soundIndex"   ] = SndPlayerGraze;
+				_item[? "soundActive"  ] = false;
+				_item[? "soundPriority"] = 0;
+				_item[? "soundLoop"    ] = false;
+			
+				_soundList[| i] = _item;
+				ds_list_mark_as_map(_soundList, i);
+				#endregion
+				break;
+				
+			case enumSoundFxList.playerSpellCharge:
+				#region Player Spell Charge
+				var _item = ds_map_create();
+			
+				_item[? "soundIndex"   ] = SndPlayerSpellCharge;
+				_item[? "soundActive"  ] = false;
+				_item[? "soundPriority"] = 0;
+				_item[? "soundLoop"    ] = false;
+			
+				_soundList[| i] = _item;
+				ds_list_mark_as_map(_soundList, i);
+				#endregion
+				break;
+				
+			case enumSoundFxList.playerSpellChargeFinish:
+				#region Player Spell Charge Finish
+				var _item = ds_map_create();
+			
+				_item[? "soundIndex"   ] = SndPlayerSpellChargeFinish;
 				_item[? "soundActive"  ] = false;
 				_item[? "soundPriority"] = 0;
 				_item[? "soundLoop"    ] = false;

@@ -17,7 +17,7 @@ charHealth = charHealthMax;
 enemyWeakness = choose(enumProjPlayerElement.spirit, enumProjPlayerElement.light, enumProjPlayerElement.ice, enumProjPlayerElement.fire);
 
 enemyStunMax = 100;
-enemyStunDegrade = 0.1;
+enemyStunDegrade = 0.001;
 enemyStunFrames = 240;
 
 

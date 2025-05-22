@@ -76,12 +76,12 @@ function State_Enemy_Basic_Idle(_status)
 			#endregion
 	
 			var _timer = ( stateTick + ( enemyId * 60 ) ) mod 120;
-			if ( _timer == 0 || _timer == 5 || _timer == 10 )
+			if ( _timer == 0 || _timer == 15 || _timer == 30 )
 			{
 				var _bullet = instance_create_layer(x, y, layer, ObjProjEnemy);
 				_bullet.projSpd = 16;
 				_bullet.projDir = point_direction(_bullet.x, _bullet.y, ObjPlayer.x, ObjPlayer.y);
-				_bullet.projScale = 2;
+				_bullet.projScale = 2.5;
 				audio_sound_pitch(SndEnemyShot, random_range(0.95, 1.05) );
 				Sound_Play(enumSoundFxList.enemyShot00);
 			}

@@ -109,6 +109,10 @@ function Player_Draw_Hud_StyleA()
 	var _percent = clamp(drawHpDisplay / charHealthMax, 0, 1);
 	draw_sprite_ext(Spr_Hud_BarFill, 0, _hudOrigin[0] + 66, _hudOrigin[1],  _percent, 1, 0, c_white, 1);
 	draw_set_halign(fa_left);		
+	
+	var _healthVal = floor(charHealth);
+	if ( charHealth > 0 && charHealth < 1 ) { _healthVal = 1; }
+	
 	for( var i = 2; i >= 0; i--; )
 	{
 		var _dropColor = merge_color( merge_color(c_red, c_fuchsia, 0.5), c_black, 0.50 );
@@ -125,10 +129,10 @@ function Player_Draw_Hud_StyleA()
 				var _dir = (360 / 6) * j;
 				var _lX  = lengthdir_x(_len, _dir);
 				var _lY  = lengthdir_y(_len, _dir);
-				draw_text(_hudOrigin[0] + 56 + _lX, _hudOrigin[1] + 36 + _lY, "HP: " + string( floor(charHealth) ) + "/" + string(charHealthMax) );
+				draw_text(_hudOrigin[0] + 56 + _lX, _hudOrigin[1] + 36 + _lY, "HP: " + string( _healthVal ) + "/" + string(charHealthMax) );
 			}
 		}
-		else { draw_text(_hudOrigin[0] + 56 - (i*2), _hudOrigin[1] + 36 + (i*2), "HP: " + string( floor(charHealth) ) + "/" + string(charHealthMax) ); }
+		else { draw_text(_hudOrigin[0] + 56 - (i*2), _hudOrigin[1] + 36 + (i*2), "HP: " + string( _healthVal ) + "/" + string(charHealthMax) ); }
 	}
 	
 	
@@ -249,6 +253,9 @@ function Player_Draw_Hud_StyleB()
 
 	draw_sprite_ext(Spr_Hud_BarFrame, 0, _hudOrigin[0], _hudOrigin[1] - 24,  1, 1, 0, c_white, 1);
 	draw_sprite_ext(Spr_Hud_BarFrame, 0, _hudOrigin[0] + 50, _hudOrigin[1] + 24,  1, 1, 0, c_white, 1);
+	
+	var _healthVal = floor(charHealth);
+	if ( charHealth > 0 && charHealth < 1 ) { _healthVal = 1; }
 
 	var _percent = clamp(drawHpDisplay / charHealthMax, 0, 1);
 	var _barPosition = [ _hudOrigin[0] + 66, _hudOrigin[1] - 24 ];
@@ -270,10 +277,10 @@ function Player_Draw_Hud_StyleB()
 				var _dir = (360 / 6) * j;
 				var _lX  = lengthdir_x(_len, _dir);
 				var _lY  = lengthdir_y(_len, _dir);
-				draw_text( _barPosition[0] + 8 + _lX, _barPosition[1] + 2 + _lY, "HP: " + string( floor(charHealth) ) + "/" + string(charHealthMax) );
+				draw_text( _barPosition[0] + 8 + _lX, _barPosition[1] + 2 + _lY, "HP: " + string( _healthVal ) + "/" + string(charHealthMax) );
 			}
 		}
-		else { draw_text( _barPosition[0] + 8 - (i*2), _barPosition[1] + 2 + (i*2), "HP: " + string( floor(charHealth) ) + "/" + string(charHealthMax) ); }
+		else { draw_text( _barPosition[0] + 8 - (i*2), _barPosition[1] + 2 + (i*2), "HP: " + string( _healthVal ) + "/" + string(charHealthMax) ); }
 	}
 
 	var _percent = clamp(drawMpDisplay / pEnergyMax, 0, 1);

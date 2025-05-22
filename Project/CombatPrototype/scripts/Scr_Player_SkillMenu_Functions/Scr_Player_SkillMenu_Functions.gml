@@ -18,12 +18,15 @@ function Player_Skill_Menu_Init()
 	pSkillMenuPointDir  = 0;
 	pSkillMenuPointDist = 0;
 	pSkillMenuConfirm = false;
+	pSkillMenuHolding = false;
 }
 
 function Player_Skill_Menu_Tick()
 {
 	if ( pSkillMenuEnabled )
 	{
+		pSkillMenuHolding = true;
+		
 		var _dismiss = false;	
 	
 		var _aimAxisX = input_value("aimright") - input_value("aimleft");
@@ -91,9 +94,9 @@ function Player_Skill_Menu_Tick()
 	}
 	else
 	{
-		if ( pElementSwap_animTimer < 0 && stateCurrent != State_Player_Attack )
+		if ( pElementSwap_animTimer < 0 && stateCurrent == State_Player_Normal )
 		{
-			if ( input_check_pressed("skillSwap" ) )
+			if ( input_check("skillSwap" ) && !pSkillMenuHolding )
 			{		
 				window_mouse_set(window_get_width() / 2, window_get_height() / 2);
 				pSkillMenuEnabled = true;
@@ -103,6 +106,8 @@ function Player_Skill_Menu_Tick()
 		}
 		else { pElementSwap_animTimer--; }
 	}
+	
+	if ( !input_check("skillSwap") ) { pSkillMenuHolding = false; }
 	
 	return false;
 }

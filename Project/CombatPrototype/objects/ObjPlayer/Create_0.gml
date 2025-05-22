@@ -16,7 +16,7 @@ Player_Move_Init();
 Player_Dash_Init();
 Player_Targeting_Init();
 Player_Shoot_Init();
-Player_Breaker_Init();
+Player_Spell_Init();
 Player_Skills_Init();
 Player_Element_Menu_Init();
 Player_Skill_Menu_Init();

@@ -11,6 +11,7 @@ function State_Player_Skill_Purify(_status)
 						
 			//Sound_Play(enumSoundFxList.playerMagmaAura);
 			
+			with ( ObjProjPlayer_Purify ) { tick = lifetime - 15; }
 			
 			stateLength = 20;
 			pSkillCooldownFrames = 60;

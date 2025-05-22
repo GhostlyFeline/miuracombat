@@ -11,10 +11,14 @@ Gamepad Controls (Xbox Configuration):
 * Left Stick - Move
 * A - Shoot
 * B - Dolphin Dash (Full i-frames during dash)
-* X - Charge/Release Spell (Tap to use Breaker)
-* Y - Skill (Only Siren Song currently available, but can be powered up to Lv 3 with repeated use)
+* X - Breaker
+* Y - Skill
 * Right Bumper - Switch Target
 * Left Trigger - Element Wheel (Right stick to choose)
+* Right Trigger - Skill Wheel (Right stick to choose)
+* Dpad Up - Spell 1
+* Dpad Right - Spell 2
+* Dpad Down - Spell 3
 
 Debug Controls (Keyboard):
 * P - Start the battle scene from the beginning.

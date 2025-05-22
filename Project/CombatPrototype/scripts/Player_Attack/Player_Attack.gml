@@ -216,17 +216,24 @@ function State_Player_Attack(_status)
 						pEnergy -= pDashEnergyCost;
 					}
 					else
-					if ( input_check("breaker") && pBreakerCooldownTimer < 0 && pEnergy >= pBreakerEnergyCost )
+					if ( ( input_check("breaker") || input_check("spell1") ) && pBreakerCooldownTimer < 0 && pEnergy >= pBreakerEnergyCost )
 					{
-						State_Change(State_Player_Spell_Charge);				
+						State_Change(State_Player_Breaker);				
+						pEnergy -= pBreakerEnergyCost;
 						pElementSwap_animTimer = -1;
 					}
 					else
-					if ( input_check("skill") && pSkillCooldownTimer < 0 && pEnergy >= pSkillEnergyCost && pSirenSongStacks < 3 )
+					if ( input_check("skill") && pSkillCooldownTimer < 0 && pEnergy >= pSkillEnergyCost )
 					{
-						State_Change(pSkillCurrent);
-						pEnergy -= pSkillEnergyCost;
-						pElementSwap_animTimer = -1;
+						var _canSkill = true;
+						if ( pSkillCurrent == State_Player_Skill_SirenSong && pSirenSongStacks >= 3 ) { _canSkill = false; }
+						if ( pSkillCurrent == State_Player_Skill_MagmaAura && pMagmaAuraTimer > 0  ) { _canSkill = false; }
+						if ( _canSkill )
+						{
+							State_Change(pSkillCurrent);
+							pEnergy -= pSkillEnergyCost;
+							pElementSwap_animTimer = -1;
+						}
 					}
 				}
 				pAttackVolleyEndTick++;

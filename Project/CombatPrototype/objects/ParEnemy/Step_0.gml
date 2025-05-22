@@ -26,11 +26,39 @@ Character_Flash_Tick();
 
 if ( global.hitstopActive ) { exit; }
 
-if ( enemyStunMultiTimer >= 0 ) { enemyStunMultiTimer--; }
-else { enemyStunMulti = 1; }
+if ( enemyPurifyMultiTimer >= 0 )
+{
+	if ( tick mod 3 == 0 )
+	{
+		with (FxHandler)
+		{					
+			var _partPos = [ random_range(other.bbox_left, other.bbox_right), random_range(other.bbox_top, other.bbox_bottom) ];
+			part_particles_create(fxSysGlobalAbove, _partPos[0], _partPos[1], fxType[enumFxType.eFxEnemy_purifySparks], 1 );
+		}
+	}
+	
+	enemyPurifyMultiTimer--;
+}
+else { enemyPurifyMulti = 1; }
 
-if ( enemyStun >= enemyStunMax ) { State_Change(State_Enemy_Stunned); }
-else { enemyStun = max( enemyStun - enemyStunDegrade, 0 ); }
+
+if ( enemyMagmaTimer >= 0 )
+{
+	var _self = id;
+	with (FxHandler)
+	{
+		var _radius = min(_self.bbox_right - _self.bbox_left, _self.bbox_bottom - _self.bbox_top);
+		
+		var _len = random_range(0, _radius * 0.75);
+		var _dir = random(360);
+		var _pos = [_self.x + lengthdir_x(_len, _dir), _self.y + lengthdir_y(_len, _dir)];				
+		part_particles_create(fxSysGlobalBelow, _pos[0], _pos[1], fxType[enumFxType.pFxPlayer_skillMagmaChargeSpark00], 1 );
+	}
+	enemyMagmaTimer--;
+}
+
+if ( enemyStun >= enemyStunMax * enemyPurifyMulti ) { State_Change(State_Enemy_Stunned); }
+else { enemyStun = max( enemyStun - ( enemyStunMax * enemyStunDegrade ), 0 ); }
 
 State_Sys_Tick();
 

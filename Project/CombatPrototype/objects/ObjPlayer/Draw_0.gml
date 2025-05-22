@@ -34,20 +34,7 @@ draw_set_alpha(0.10);
 draw_set_circle_precision(64);
 draw_circle(pMoveBoundsCirclePos[0], pMoveBoundsCirclePos[1], pMoveBoundsCircleRadius + 160, 0);
 
-if ( pMagmaAuraTimer > 0 )
-{
-	gpu_set_blendmode(bm_add);
-	draw_set_alpha(0.33);
-	draw_circle_color(x, y, 512, c_red, c_black, 0);
-	draw_circle_color(x, y, 448, merge_color(c_red   , c_orange, 0.50), c_black, 0);
-	draw_circle_color(x, y, 384, merge_color(c_orange, c_yellow, 0.50), c_black, 0);
-	draw_set_alpha(0.50);
-	//draw_circle_color(x, y, 512, c_black, merge_color(c_red, c_orange, 0.33), 0);
-	gpu_set_blendmode(bm_normal);
-}
 
-
-draw_set_circle_precision(24);
 
 
 #region Aiming Line
@@ -69,16 +56,41 @@ if ( instance_exists(ObjPlayerTarget.follow) )
 
 if ( stateCurrent == State_Player_Spell_Charge ) 
 {
+	var _circleColor = merge_color(_aimColor, c_white, 0.33);
+	draw_set_alpha(1);
+	
 	gpu_set_blendmode(bm_add);
-	for ( var i = 0; i < 6; i++; )
+	
+	//draw_sprite_ext(SprSpellCircle, 0, x, y, 1, 1, 0, _circleColor, 1);
+	
+	var _alpha  = 0.3;
+	
+	for ( var i = 0; i < 2; i++; )
 	{
-		var _scl    = lerp(0.5, 2.0, i / 5);
-		var _alpha  = lerp(0.3, 0.0, i / 5);
-		var _rotSpd = lerp(2.0, 0.5, i / 5);
-		var _flip   = lerp( 1, -1, i mod 2 )
-		draw_sprite_ext(SprSpellCircle, 0, x, y, _scl, _scl * _flip, stateTick * _rotSpd, c_white, _alpha);
+		var _growLerp = 1;
+		if ( pSpellChargeTimer <= pSpellChargeFrames && pSpellCharges < 1 ) { _growLerp = pSpellChargeTimer / pSpellChargeFrames; }
+		
+		var _scl    = lerp(0.5, 1.0, i / 1) * _growLerp * 0.6;
+		var _rotSpd = lerp(0.5, 1.0, i / 1);
+		var _flip   = lerp( 1, -1, i mod 2 );
+		draw_sprite_ext(SprSpellCircle, 0, x, y, _scl, _scl * _flip, pSpellChargeCircleRot * _rotSpd, _circleColor, _alpha);
+		
+		if ( pSpellCharges >= 1 )
+		{
+			_growLerp = 1;
+			if ( pSpellChargeTimer <= pSpellChargeFrames && pSpellCharges == 1 ) { _growLerp = pSpellChargeTimer / pSpellChargeFrames; }
+		
+			_scl    = lerp(1.5, 2.0, i / 1) * _growLerp * 0.6;
+			_rotSpd = lerp(1.5, 2.0, i / 1);
+			_flip   = lerp( 1, -1, ( i + 1 ) mod 2 );
+			draw_sprite_ext(SprSpellCircle, 0, x, y, _scl, _scl * _flip,  pSpellChargeCircleRot * _rotSpd, _circleColor, _alpha);
+		}
 	}
+	
 	gpu_set_blendmode(bm_normal);
+	
+	
+
 }
 
 #endregion

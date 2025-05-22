@@ -67,6 +67,13 @@ battleRoundArray[0] = function() {
 battleRoundArray[1] = function() {
 	#region Round 2
 	
+	//var _pos = [room_width * 0.5, room_height * 0.3];
+	//var _enemy = instance_create_layer(_pos[0], _pos[1], "GameplayInst", ObjEnemyCaster);
+	//_enemy.enemyId = global.enemySpawnIndex;
+	//_enemy.enemyWeakness = enumProjPlayerElement.light;
+	//global.enemySpawnIndex++;
+	
+	
 	var _spawnNum = 6;
 	spawnAngle += ( 360 / _spawnNum ) + 180;
 	for ( var i = 0; i < _spawnNum; i++; )

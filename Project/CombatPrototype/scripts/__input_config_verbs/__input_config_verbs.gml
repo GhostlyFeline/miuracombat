@@ -15,15 +15,18 @@ function __input_config_verbs()
     return {
         keyboard_and_mouse:
         {
-            up:    [input_binding_key(vk_up),    input_binding_key("W")],
-            down:  [input_binding_key(vk_down),  input_binding_key("S")],
-            left:  [input_binding_key(vk_left),  input_binding_key("A")],
-            right: [input_binding_key(vk_right), input_binding_key("D")],
+            up:    [input_binding_key("W")],
+            down:  [input_binding_key("S")],
+            left:  [input_binding_key("A")],
+            right: [input_binding_key("D")],
 								
 			shoot:   input_binding_mouse_button(mb_left),
 			dash:    input_binding_mouse_button(mb_right),
 			breaker: input_binding_key("1"),
 			skill:   input_binding_key(vk_space),
+			
+			spell2: input_binding_key("2"),
+			spell3: input_binding_key("3"),
 			
 			target: input_binding_mouse_button(mb_middle),
 			
@@ -35,15 +38,19 @@ function __input_config_verbs()
         
         gamepad:
         {
-            up:    [input_binding_gamepad_axis(gp_axislv, true) , input_binding_gamepad_button(gp_padu)],
-            down:  [input_binding_gamepad_axis(gp_axislv, false), input_binding_gamepad_button(gp_padd)],
-            left:  [input_binding_gamepad_axis(gp_axislh, true) , input_binding_gamepad_button(gp_padl)],
-            right: [input_binding_gamepad_axis(gp_axislh, false), input_binding_gamepad_button(gp_padr)],
+            up:    [input_binding_gamepad_axis(gp_axislv, true) ],
+            down:  [input_binding_gamepad_axis(gp_axislv, false)],
+            left:  [input_binding_gamepad_axis(gp_axislh, true) ],
+            right: [input_binding_gamepad_axis(gp_axislh, false)],
             			
 			shoot:   input_binding_gamepad_button(gp_face1),
 			dash:    input_binding_gamepad_button(gp_face2),
 			breaker: input_binding_gamepad_button(gp_face3),
 			skill:   input_binding_gamepad_button(gp_face4),
+			
+			spell1:   input_binding_gamepad_button(gp_padu),
+			spell2:   input_binding_gamepad_button(gp_padr),
+			spell3:   input_binding_gamepad_button(gp_padd),
 			
 			target: input_binding_gamepad_button(gp_shoulderr),
 			

@@ -209,4 +209,8 @@ draw_set_halign(fa_right);
 draw_set_valign(fa_bottom);
 
 var _string = "Debug Controls:\nP - Start Battle\nO - Cancel Battle\nH - Toggle Hud Style";
-draw_text(_guiRight - 8, _guiBottom - 8, _string);
+draw_text(_guiRight - 8, _guiBottom - 40, _string);
+
+draw_set_color( merge_color(c_aqua, c_white, 0.5) );
+var _string = game_display_name + " " + VERSION_STRING;
+draw_text(_guiRight - 4, _guiBottom - 4, _string);

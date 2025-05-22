@@ -9,15 +9,13 @@ function State_Player_Skill_MagmaAura(_status)
 		case enumStateStatus.init:
 			#region Init Script
 						
-			Sound_Play(enumSoundFxList.playerMagmaAura);
+			//Sound_Play(enumSoundFxList.playerMagmaAura);
 			
-			pMagmaAuraTimer = pMagmaAuraFrames;
+			with ( ObjProjPlayer_Magma ) { tick = lifetime - 15; }
 			
-			stateLength = 60;
-			pSkillCooldownFrames = 60;
+			stateLength = 20;
 			
-			pSkillCooldownTimer = pSkillCooldownFrames;
-			
+			pSkillCooldownTimer = pSkillCooldownFrames;			
 			
 			stateNext = State_Player_Normal;
 			stateNextLength = -1;
@@ -32,21 +30,22 @@ function State_Player_Skill_MagmaAura(_status)
 			Player_Targeting_Tick();
 			
 			pMoveSpeedMulti = 0.25;
-			pMagmaAuraTimer = pMagmaAuraFrames;
 			
-			if ( stateTick mod 5 == 0 )
+			#region Play the attack animation based on the length of the attack.
+			sprite_index = SprPlayerAttack;
+			image_index  = ( stateTick / stateLength ) * sprite_get_number(sprite_index);
+			image_speed  = 0;
+			#endregion
+			
+			#region Shoot the bullet!
+		
+			if ( stateTick == round(stateLength * 0.5) )
 			{
-				with (FxHandler)
-				{					
-					repeat(3)
-					{
-						var _len = random_range(0, 128);
-						var _dir = random(360);
-						var _pos = [_self.x + lengthdir_x(_len, _dir), _self.y + lengthdir_y(_len, _dir)];				
-						part_particles_create(fxSysGlobalAbove, _pos[0], _pos[1], fxType[enumFxType.pFxPlayer_skillMagmaChargeSpark00], 1 );
-					}
-				}
+				Sound_Play(enumSoundFxList.playerMagmaAura);			
+				var _bullet = instance_create_layer(x, y, layer, ObjProjPlayer_Magma);
 			}
+		
+			#endregion
 			
 			if ( pAttackCooldownTimer  >= 0 ) { pAttackCooldownTimer--;  }
 			if ( pBreakerCooldownTimer >= 0 ) { pBreakerCooldownTimer--; }		

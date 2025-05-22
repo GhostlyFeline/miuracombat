@@ -31,14 +31,16 @@ enemyWeakness = choose(enumProjPlayerElement.spirit, enumProjPlayerElement.light
 
 enemyStun = 0;
 enemyStunMax = 100;
-enemyStunDegrade = 0.1;
-
-
+enemyStunDegrade = 0.01;
 enemyStunTimer  = -1;
 enemyStunFrames = 240;
+enemyPurifyMulti = 1;
+enemyPurifyMultiTimer = 0;
 
-enemyStunMulti = 1;
-enemyStunMultiTimer = 0;
+enemyMagmaTimer = 0;
+enemyMagmaFrames = 30;
+
+invincible = false;
 
 
 var _len = random(ObjPlayer.pMoveBoundsCircleRadius);

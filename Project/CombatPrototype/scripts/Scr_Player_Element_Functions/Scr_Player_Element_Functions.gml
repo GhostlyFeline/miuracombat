@@ -18,12 +18,15 @@ function Player_Element_Menu_Init()
 	pElementMenuPointDir  = 0;
 	pElementMenuPointDist = 0;
 	pElementMenuConfirm = false;
+	pElementMenuHolding = false;
 }
 
 function Player_Element_Menu_Tick()
 {
 	if ( pElementMenuEnabled )
 	{
+		pElementMenuHolding = true;
+		
 		var _dismiss = false;	
 	
 		var _aimAxisX = input_value("aimright") - input_value("aimleft");
@@ -89,9 +92,9 @@ function Player_Element_Menu_Tick()
 	}
 	else
 	{
-		if ( pElementSwap_animTimer < 0 && stateCurrent != State_Player_Attack )
+		if ( pElementSwap_animTimer < 0 && stateCurrent == State_Player_Normal )
 		{
-			if ( input_check_pressed("element" ) )
+			if ( input_check("element" ) && !pElementMenuHolding )
 			{		
 				window_mouse_set(window_get_width() / 2, window_get_height() / 2);
 				pElementMenuEnabled = true;
@@ -101,6 +104,8 @@ function Player_Element_Menu_Tick()
 		}
 		else { pElementSwap_animTimer--; }
 	}
+	
+	if ( !input_check("element") ) { pElementMenuHolding = false; }
 	
 	return false;
 }

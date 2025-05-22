@@ -22,7 +22,7 @@ bossName = "Angel of the Deep";
 enemyWeakness = choose(enumProjPlayerElement.spirit, enumProjPlayerElement.light, enumProjPlayerElement.ice, enumProjPlayerElement.fire);
 
 enemyStunMax = 300;
-enemyStunDegrade = 0.25;
+enemyStunDegrade = 0.0025;
 enemyStunFrames = 240;
 
 var _len = random(ObjPlayer.pMoveBoundsCircleRadius);

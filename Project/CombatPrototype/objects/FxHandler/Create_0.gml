@@ -26,6 +26,14 @@ enum enumFxType
 	pFxPlayer_skillIceSpark00,
 	
 	pFxPlayer_skillMagmaChargeSpark00,
+	pFxPlayer_skillMagmaChargeSpark01,
+	
+	pFxPlayer_skillMagmaChargeFlash,
+	
+	pFxPlayer_skillMagmaCircleSpark00,
+		
+	pFxPlayer_spellChargeFlash00,
+	pFxPlayer_spellChargeFlash01,
 	
 	pFxProj_spiritHitFlash00,
 	pFxProj_spiritHitSpark00,
@@ -45,6 +53,7 @@ enum enumFxType
 	eFxProj_hitSpark00,
 	
 	eFxEnemy_appearSpark00,
+	eFxEnemy_purifySparks,
 	
 	eFxEnemy_explodeFlash00,
 	eFxEnemy_explodeFlash01,
@@ -140,14 +149,68 @@ part_type_life(fxType[_entry], 15, 15);
 
 var _entry = enumFxType.pFxPlayer_skillMagmaChargeSpark00;
 fxType[_entry] = part_type_create();
-part_type_sprite(fxType[_entry], SprFxProjImpactFlash, 0, 0, 0);
-part_type_size(fxType[_entry], 0.3, 1.0, -0.01, 0 );
+part_type_sprite(fxType[_entry], SprFxGenericSpark, 0, 0, 0);
+part_type_size(fxType[_entry], 0.5, 1.2, -0.017, 0 );
 part_type_alpha3(fxType[_entry], 1.0, 1.0, 0 );
 part_type_color3(fxType[_entry], c_orange, c_red, c_maroon );
 part_type_blend(fxType[_entry], true);
 part_type_speed(fxType[_entry], 2, 4, 0, 0);
 part_type_direction(fxType[_entry], 90, 90, 0, 0);
 part_type_life(fxType[_entry], 30, 30);
+
+var _entry = enumFxType.pFxPlayer_skillMagmaChargeSpark01;
+fxType[_entry] = part_type_create();
+part_type_sprite(fxType[_entry], SprFxProjImpactSpark, 0, 0, 0);
+part_type_scale(fxType[_entry], 2, 1.0);
+part_type_size(fxType[_entry], 0.5, 1.0, 0.10, 0 );
+part_type_alpha2(fxType[_entry], 1, 0 );
+part_type_color3(fxType[_entry], c_yellow, c_orange, c_red);
+part_type_blend(fxType[_entry], true);
+part_type_speed(fxType[_entry], 24, 48, 0, 0);
+part_type_direction(fxType[_entry], 0, 360, 0, 0);
+part_type_orientation(fxType[_entry], 0, 0, 0, 0, true);
+part_type_life(fxType[_entry], 15, 15);
+
+var _entry = enumFxType.pFxPlayer_skillMagmaChargeFlash;
+fxType[_entry] = part_type_create();
+part_type_sprite(fxType[_entry], SprFxGenericSpark, 0, 0, 0);
+part_type_size(fxType[_entry], 0, 0, 1.00, 0 );
+part_type_alpha3(fxType[_entry], 1, 1, 0 );
+part_type_color3(fxType[_entry], c_white, c_orange, c_red );
+part_type_blend(fxType[_entry], true);
+part_type_life(fxType[_entry], 15, 15);
+
+var _entry = enumFxType.pFxPlayer_skillMagmaCircleSpark00;
+fxType[_entry] = part_type_create();
+part_type_sprite(fxType[_entry], SprFxGenericSpark, 0, 0, 0);
+part_type_size(fxType[_entry], 1.0, 2.0, 0.1, 0 );
+part_type_alpha3(fxType[_entry], 0.0, 0.33, 0 );
+part_type_color3(fxType[_entry], c_red, c_orange, c_red );
+part_type_blend(fxType[_entry], true);
+part_type_life(fxType[_entry], 30, 30);
+
+
+var _entry = enumFxType.pFxPlayer_spellChargeFlash00;
+fxType[_entry] = part_type_create();
+part_type_sprite(fxType[_entry], SprFxGenericSpark, 0, 0, 0);
+part_type_size(fxType[_entry], 0, 0, 0.20, 0 );
+part_type_alpha2(fxType[_entry], 0.75, 0 );
+part_type_color2(fxType[_entry], c_white, c_aqua );
+part_type_blend(fxType[_entry], true);
+part_type_life(fxType[_entry], 15, 15);
+
+var _entry = enumFxType.pFxPlayer_spellChargeFlash01;
+fxType[_entry] = part_type_create();
+part_type_sprite(fxType[_entry], SprFxProjImpactSpark, 0, 0, 0);
+part_type_scale(fxType[_entry], 1, 0.75);
+part_type_size(fxType[_entry], 0.5, 1.0, 0.10, 0 );
+part_type_alpha2(fxType[_entry], 1, 0 );
+part_type_color2(fxType[_entry], c_white, c_aqua);
+part_type_blend(fxType[_entry], true);
+part_type_speed(fxType[_entry], 8, 16, 0, 0);
+part_type_direction(fxType[_entry], 0, 360, 0, 0);
+part_type_orientation(fxType[_entry], 0, 0, 0, 0, true);
+part_type_life(fxType[_entry], 10, 10);
 
 
 #region Player Projectiles
@@ -278,6 +341,15 @@ part_type_color2(fxType[_entry], c_black, c_purple);
 part_type_speed(fxType[_entry], 4, 6, -0.125, 0);
 part_type_direction(fxType[_entry], 0, 360, 0, 0);
 part_type_life(fxType[_entry], 30, 40);
+
+var _entry = enumFxType.eFxEnemy_purifySparks;
+fxType[_entry] = part_type_create();
+part_type_sprite(fxType[_entry], SprFxProjImpactFlash, 0, 0, 0);
+part_type_size(fxType[_entry], 0.2, 0.4, -0.01, 0 );
+part_type_alpha3(fxType[_entry], 1, 1, 0 );
+part_type_color3(fxType[_entry], c_white, c_lime, c_green);
+part_type_blend(fxType[_entry], true);
+part_type_life(fxType[_entry], 30, 30);
 
 #region Enemy Explode
 

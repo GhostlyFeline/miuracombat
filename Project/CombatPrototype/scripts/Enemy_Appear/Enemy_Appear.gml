@@ -19,6 +19,8 @@ function State_Enemy_Appear(_status)
 			charShakeTimer  = charShakeFrames;
 			charShakeAmp = 16;
 			
+			invincible = true;
+			
 			#endregion
 			break;
 			
@@ -44,13 +46,15 @@ function State_Enemy_Appear(_status)
 				}
 			}
 						
+			invincible = true;			
+			
 			#endregion
 			break;
 			
 		case enumStateStatus.abort:
 			#region Abort Script
 			
-			
+			invincible = false;
 			
 			#endregion
 			break;
