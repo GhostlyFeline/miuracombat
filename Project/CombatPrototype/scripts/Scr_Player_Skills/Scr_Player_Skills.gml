@@ -9,15 +9,19 @@ function Player_Skills_Init()
 	
 	pSirenSongEnergyCost = 30;
 	pSirenSongTimer = 0;
-	pSirenSongFrames = ( game_get_speed(gamespeed_fps) * 15 );	
+	pSirenSongFrames = game_get_speed(gamespeed_fps) * 15;	
 	pSirenSongHealthRegen = ( charHealthMax / 20 ) / ( game_get_speed(gamespeed_fps) * 5 ); 
 	pSirenSongStacks = 0;
+	pSirenSongStackMax = 2;
 	
 	pIceShieldEnergyCost  = 20;
 	pIceShieldEnergyDrain = 0.025;	
 	pIceShieldHasParried = false;
 	pIceShieldParryFrames = 30;
-	pIceShieldParryRecoverPercent = 0.75;
+	pIceShieldParryRecoverPercent = 0.5;	
+	pIceArmorTimer = 0;
+	pIceArmorFrames = game_get_speed(gamespeed_fps) * 5;
+	pIceArmorMultiplier = 1;
 	
 	pMagmaAuraEnergyCost = 30;
 	pMagmaAuraTimer = 0;
@@ -35,26 +39,28 @@ function Player_Skills_Tick()
 {	
 	var _self = id;
 	
+	if ( charHealth <= 0 ) return -1;
+	
 	switch ( pSkillCurrent )
 	{
 		case State_Player_Skill_SirenSong:
 			pSkillEnergyCost = pSirenSongEnergyCost;
-			pSkillCooldownFrames = 60;
+			pSkillCooldownFrames = 180;
 			break;
 			
 		case State_Player_Skill_IceShield:
 			pSkillEnergyCost = pIceShieldEnergyCost;
-			pSkillCooldownFrames = 60;
+			pSkillCooldownFrames = 180;
 			break;
 			
 		case State_Player_Skill_MagmaAura:
 			pSkillEnergyCost = pMagmaAuraEnergyCost;
-			pSkillCooldownFrames = 60;
+			pSkillCooldownFrames = 180;
 			break;
 			
 		case State_Player_Skill_Purify:
 			pSkillEnergyCost = pPurifyEnergyCost;
-			pSkillCooldownFrames = 60;
+			pSkillCooldownFrames = 180;
 			break;
 	}
 	
@@ -78,6 +84,33 @@ function Player_Skills_Tick()
 	else
 	{
 		pSirenSongStacks = 0;
+	}
+	#endregion
+	
+	#region Crystal Armor
+	if ( pIceArmorTimer >= 0 )
+	{
+		pIceArmorMultiplier = 0.5;
+		
+		if ( pIceArmorTimer > 0 )
+		{
+			with (FxHandler)
+			{					
+				repeat(2)
+				{
+					var _len = random(100);
+					var _dir = random(360);
+					var _pos = [_self.x + lengthdir_x(_len, _dir), _self.y + lengthdir_y(_len, _dir)];				
+					part_particles_create(fxSysGlobalAbove, _pos[0], _pos[1], fxType[enumFxType.pFxPlayer_skillIceSpark00], 1 );
+				}
+			}
+		}
+		
+		pIceArmorTimer--;
+	}
+	else
+	{
+		pIceArmorMultiplier = 1;
 	}
 	#endregion
 	

@@ -1,7 +1,7 @@
 /// @description Insert description here
 // You can write your code in this editor
 
-projScale = 1.2;
+projScale = 40;
 image_xscale = projScale;
 image_yscale = projScale;
 image_alpha = 0.33;

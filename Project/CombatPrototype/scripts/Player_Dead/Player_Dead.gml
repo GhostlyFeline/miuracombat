@@ -9,7 +9,7 @@ function State_Player_Dead(_status)
 		case enumStateStatus.init:
 			#region Init Script
 			
-			
+			isDying = true;
 			
 			#endregion
 			break;

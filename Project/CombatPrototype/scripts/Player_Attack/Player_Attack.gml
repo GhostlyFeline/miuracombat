@@ -18,10 +18,10 @@ function State_Player_Attack(_status)
 			
 			switch(playerElementCurrent)
 			{
-				case enumProjPlayerElement.spirit: pAttackFrames = 20; break;
-				case enumProjPlayerElement.light:  pAttackFrames = 15; break;
-				case enumProjPlayerElement.ice:    pAttackFrames = 30; break;
-				case enumProjPlayerElement.fire:   pAttackFrames = 50; break;
+				case enumProjPlayerElement.spirit: pAttackFrames = 20; pAttackCooldownFrames = 10; break;
+				case enumProjPlayerElement.light:  pAttackFrames = 15; pAttackCooldownFrames =  5; break;
+				case enumProjPlayerElement.ice:    pAttackFrames = 10; pAttackCooldownFrames =  5;  break;
+				case enumProjPlayerElement.fire:   pAttackFrames = 45; pAttackCooldownFrames = 15; break;
 			}
 						
 			#endregion
@@ -108,6 +108,7 @@ function State_Player_Attack(_status)
 						_bullet.damage = 10;
 						_bullet.stunDamage = 4;
 						_bullet.element = playerElementCurrent;		
+						_bullet.projTarget = ObjPlayerTarget.follow;
 					
 					
 						pAttackNumber++;
@@ -136,6 +137,7 @@ function State_Player_Attack(_status)
 							_bullet.stunDamage = 4;
 							_bullet.element = playerElementCurrent;
 							_bullet.penetrate = true;
+							_bullet.projHomingDisable = true;
 						}
 					
 					
@@ -160,13 +162,14 @@ function State_Player_Attack(_status)
 					
 						var _bullet = instance_create_layer(x + _lX, y + _lY, layer, ObjProjPlayer);
 						var _aimDir = point_direction(_bullet.x, _bullet.y, _targetPos[0], _targetPos[1]);
-						_bullet.projSpd = 90;
+						_bullet.projSpd = 80;
 						_bullet.projDir = _aimDir;
 						_bullet.projScale *= 3.0;
 						_bullet.damage = 15;
-						_bullet.stunDamage = 12;
+						_bullet.stunDamage = 8;
 						_bullet.element = playerElementCurrent;			
 						_bullet.projMovePause = true;
+						_bullet.projTarget = ObjPlayerTarget.follow;
 					
 						pAttackNumber++;
 					}
@@ -190,12 +193,14 @@ function State_Player_Attack(_status)
 						var _aimDir = point_direction(x, y, _targetPos[0], _targetPos[1]);
 			
 						var _bullet = instance_create_layer(x, y, layer, ObjProjPlayer);
-						_bullet.projSpd = 90;
+						_bullet.projSpd = 20;
 						_bullet.projDir = _aimDir;
-						_bullet.projScale *= 4;
-						_bullet.damage = 10;
-						_bullet.stunDamage = 8;
+						_bullet.projScale *= 2;
+						_bullet.damage = 5;
+						_bullet.stunDamage = 4;
 						_bullet.element = playerElementCurrent;
+						_bullet.projTarget = ObjPlayerTarget.follow;
+						_bullet.projHomingRotate = 0.25;
 					
 						pAttackNumber++;
 						if ( pAttackNumber >= 1 ) { pAttackVolleyFinished = true; }
@@ -226,7 +231,7 @@ function State_Player_Attack(_status)
 					if ( input_check("skill") && pSkillCooldownTimer < 0 && pEnergy >= pSkillEnergyCost )
 					{
 						var _canSkill = true;
-						if ( pSkillCurrent == State_Player_Skill_SirenSong && pSirenSongStacks >= 3 ) { _canSkill = false; }
+						if ( pSkillCurrent == State_Player_Skill_SirenSong && pSirenSongStacks >= pSirenSongStackMax ) { _canSkill = false; }
 						if ( pSkillCurrent == State_Player_Skill_MagmaAura && pMagmaAuraTimer > 0  ) { _canSkill = false; }
 						if ( _canSkill )
 						{
@@ -238,10 +243,10 @@ function State_Player_Attack(_status)
 				}
 				pAttackVolleyEndTick++;
 			}
-			
-			if ( pBreakerCooldownTimer >= 0 ) { pBreakerCooldownTimer--; }		
+				
 			if ( pDashCooldownTimer    >= 0 ) { pDashCooldownTimer--;    }
 			if ( pSkillCooldownTimer   >= 0 ) { pSkillCooldownTimer--;   }
+			Player_Spell_Tick();
 			Player_Energy_Tick();
 			Player_Skills_Tick();
 						

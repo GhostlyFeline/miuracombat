@@ -10,6 +10,19 @@ image_yscale = image_xscale;
 
 if ( !projMovePause )
 {
+	if ( !projHomingDisable )
+	{
+		if ( instance_exists(projTarget) )
+		{
+			var _pointDir = point_direction(x, y, projTarget.x, projTarget.y);
+			if ( abs( angle_difference(projDir, _pointDir) ) >= projHomingRotate )
+			{
+				projDir -= projHomingRotate * sign( angle_difference(projDir, _pointDir) );
+			}
+		}
+	}
+	
+	
 	x += lengthdir_x(projSpd, projDir);
 	y += lengthdir_y(projSpd, projDir);
 }

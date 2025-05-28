@@ -21,14 +21,10 @@
 
 var _radius = ( bbox_right - bbox_left ) * 0.5;
 
-var _alpha = 1;
-if ( tick >= lifetime - 5 ) { _alpha = lerp(1, 0, ( tick - ( lifetime - 5 ) ) / 5 ); }
-if ( tick <= 15 ) { _alpha = lerp(0, 1, tick / 15 ); }
-
-draw_set_circle_precision(32);
+draw_set_circle_precision(48);
 
 gpu_set_blendmode(bm_add);
-draw_set_alpha(0.33 * _alpha);
+draw_set_alpha(image_alpha);
 draw_circle_color(x, y, _radius * 1.0, c_black, c_red, 0);
 draw_circle_color(x, y, _radius * 0.9, merge_color(c_red   , c_orange, 0.50), c_black, 0);
 draw_circle_color(x, y, _radius * 0.8, merge_color(c_orange, c_yellow, 0.50), c_black, 0);

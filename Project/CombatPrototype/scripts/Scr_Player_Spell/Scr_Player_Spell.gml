@@ -10,18 +10,39 @@ function Player_Spell_Init()
 	
 	pBreakerFrames = 35;
 	pBreakerCooldownTimer = -1;
-	pBreakerCooldownFrames = 60;
+	pBreakerCooldownFrames = ( game_get_speed(gamespeed_fps) * 3 );
 	pBreakerEnergyCost = 10;
 	
 	pMagicFrames = 35;
 	pMagicCooldownTimer = -1;
-	pMagicCooldownFrames = 60;
+	pMagicCooldownFrames = ( game_get_speed(gamespeed_fps) * 5 );
 	pMagicEnergyCost = 20;
 	
 	pUltFrames = 35;
 	pUltCooldownTimer = -1;
-	pUltCooldownFrames = 60;
+	pUltCooldownFrames = ( game_get_speed(gamespeed_fps) * 10 );
 	pUltEnergyCost = 40;
 	
 	pSpellChargeCosts = [ pBreakerEnergyCost, pMagicEnergyCost, pUltEnergyCost ];
+}
+
+function Player_Spell_Tick()
+{
+	if ( pBreakerCooldownTimer >= 0 )
+	{
+		if ( pBreakerCooldownTimer == 0 ) { drawSpellFinishTimer[0] = drawSpellFinishFrames[0]; }
+		pBreakerCooldownTimer--;
+	}	
+	
+	if (pMagicCooldownTimer >= 0 )
+	{
+		if ( pMagicCooldownTimer == 0 ) { drawSpellFinishTimer[1] = drawSpellFinishFrames[1]; }
+		pMagicCooldownTimer--;
+	}	
+	
+	if ( pUltCooldownTimer >= 0 )
+	{
+		if ( pUltCooldownTimer == 0 ) { drawSpellFinishTimer[2] = drawSpellFinishFrames[2]; }
+		pUltCooldownTimer--;
+	}	
 }

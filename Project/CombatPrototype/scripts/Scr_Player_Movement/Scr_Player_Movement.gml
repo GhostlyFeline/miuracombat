@@ -13,16 +13,11 @@ function Player_Move_Init()
 	pMoveIsSlowed  = false;
 	pMoveIsHalted  = false;
 
-	pMoveSpeedEasing = 0.25;
+	pMoveSpeedEasing = 0.2;
 
 	pMoveBoundsEnable = true;
 	pMoveBoundsCirclePos    = [room_width * 0.5, room_height * 0.5];
 	pMoveBoundsCircleRadius = 2000;
-
-	//pMoveBoundsLeft  = 32;
-	//pMoveBoundsRight = room_width - 32;
-	//pMoveBoundsUp    = 32;
-	//pMoveBoundsDown  = room_height - 32;
 }
 
 

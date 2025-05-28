@@ -14,6 +14,7 @@ function State_Player_Skill_MagmaAura(_status)
 			with ( ObjProjPlayer_Magma ) { tick = lifetime - 15; }
 			
 			stateLength = 20;
+			pSkillCooldownFrames = 180;
 			
 			pSkillCooldownTimer = pSkillCooldownFrames;			
 			
@@ -48,8 +49,8 @@ function State_Player_Skill_MagmaAura(_status)
 			#endregion
 			
 			if ( pAttackCooldownTimer  >= 0 ) { pAttackCooldownTimer--;  }
-			if ( pBreakerCooldownTimer >= 0 ) { pBreakerCooldownTimer--; }		
 			if ( pDashCooldownTimer    >= 0 ) { pDashCooldownTimer--;    }
+			Player_Spell_Tick();
 			Player_Skills_Tick();
 						
 			#endregion

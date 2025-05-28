@@ -10,6 +10,7 @@ function State_Player_Breaker(_status)
 			#region Init Script
 									
 			pBreakerCooldownTimer = pBreakerCooldownFrames;
+			drawSpellFinishTimer[0] = drawSpellFinishFrames[0];
 			
 			stateLength = pBreakerFrames;
 			

@@ -15,6 +15,11 @@ damage = 5;
 stunDamage = 10;
 
 
+projTarget = noone;
+projHomingDisable = false;
+projHomingRotate = 2;
+
+
 magmaAuraMulti = 1;
 
 

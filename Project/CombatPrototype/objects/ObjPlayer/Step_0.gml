@@ -45,7 +45,17 @@ if ( !_menuOpen )
 	State_Sys_Tick();
 }
 
-if ( charHealth <= 0 && stateCurrent != State_Player_Dying && stateCurrent != State_Player_Dead )
+if ( charHealth <= 0 && !isDying )
 {
 	State_Change( State_Player_Dying, 60 );
+}
+
+if ( pRecoveryTimer >= 0 && !isDying )
+{
+	canGraze = false;
+	invincible = true;	
+	if ( pRecoveryTimer mod 5 == 0 ) { Character_Flash_Activate(5, 1, merge_color(c_red, c_white, 0.33), 0.66, true, 100); }
+	if ( pRecoveryTimer == 0 ) { invincible = false; canGraze = true; }
+	
+	pRecoveryTimer--;
 }

@@ -8,10 +8,6 @@ image_yscale = projScale; //6
 
 
 tick++;
-if ( tick >= lifetime - 20 )
-{
-	image_alpha = lerp(0.33, 0, ( tick - (lifetime - 20) ) / 20);
-}
+if ( tick <= 15 ) { image_alpha = lerp(0, 0.33, tick / 15); }
+if ( tick >= lifetime - 30 ) { image_alpha = lerp(0.33, 0, ( tick - (lifetime - 30) ) / 30); }
 if ( tick > lifetime ) { instance_destroy(); }
-
-

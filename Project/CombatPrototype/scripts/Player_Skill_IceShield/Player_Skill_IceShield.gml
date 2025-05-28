@@ -32,7 +32,7 @@ function State_Player_Skill_IceShield(_status)
 			Player_Move_Tick();
 			Player_Targeting_Tick();
 			
-			pMoveSpeedMulti = 0.25;	
+			pMoveSpeedMulti = 0.5;	
 			
 			
 			if ( stateTick <= pIceShieldParryFrames )
@@ -44,8 +44,10 @@ function State_Player_Skill_IceShield(_status)
 					{
 						pEnergy += ( pIceShieldEnergyCost * pIceShieldParryRecoverPercent );
 						pIceShieldHasParried = true;
+						pIceArmorTimer = pIceArmorFrames;
 						global.hitstopTimer = 5;
 						Sound_Play(enumSoundFxList.playerIceParry);
+						var _bullet = instance_create_layer(x, y, layer, ObjProjPlayer_Cancel);
 						
 						with (FxHandler)
 						{					
@@ -64,14 +66,14 @@ function State_Player_Skill_IceShield(_status)
 			}
 			else
 			{
-				if ( pEnergy <= 0 || !input_check("skill") )
+				if ( pIceShieldHasParried || stateTick >= pIceShieldParryFrames )
 				{
 					State_Change(State_Player_Normal);
 				}
 				else
 				{
-					if ( stateTick mod 3 == 0 ) { Character_Flash_Activate(3, 1, merge_color(c_aqua, c_white, 0.5), 0.25, true, 10); }
-					pEnergy = max( pEnergy - pIceShieldEnergyDrain, 0);
+					//if ( stateTick mod 3 == 0 ) { Character_Flash_Activate(3, 1, merge_color(c_aqua, c_white, 0.5), 0.25, true, 10); }
+					//pEnergy = max( pEnergy - pIceShieldEnergyDrain, 0);
 				}
 			}					
 			
@@ -90,9 +92,9 @@ function State_Player_Skill_IceShield(_status)
 			}
 			
 			
-			if ( pAttackCooldownTimer  >= 0 ) { pAttackCooldownTimer--;  }
-			if ( pBreakerCooldownTimer >= 0 ) { pBreakerCooldownTimer--; }		
+			if ( pAttackCooldownTimer  >= 0 ) { pAttackCooldownTimer--;  }			
 			if ( pDashCooldownTimer    >= 0 ) { pDashCooldownTimer--;    }
+			Player_Spell_Tick();
 			Player_Skills_Tick();
 						
 			#endregion

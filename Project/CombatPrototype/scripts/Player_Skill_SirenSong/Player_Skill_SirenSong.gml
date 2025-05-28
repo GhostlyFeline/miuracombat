@@ -9,14 +9,14 @@ function State_Player_Skill_SirenSong(_status)
 		case enumStateStatus.init:
 			#region Init Script
 						
-			audio_sound_pitch(SndPlayerSirenSong, 1 + (min(pSirenSongStacks, 2) * 0.12) );
+			audio_sound_pitch(SndPlayerSirenSong, 1 + (min(pSirenSongStacks, pSirenSongStackMax - 1) * 0.12) );
 			Sound_Play(enumSoundFxList.playerSirenSong);
 			
 			pSirenSongTimer = pSirenSongFrames;
 			
 			stateLength = 60;
-			pSkillCooldownFrames = 60;
-			pSirenSongStacks = min(pSirenSongStacks + 1, 3);
+			pSkillCooldownFrames = 180;
+			pSirenSongStacks = min(pSirenSongStacks + 1, pSirenSongStackMax);
 			
 			pSkillCooldownTimer = pSkillCooldownFrames;
 			
@@ -51,8 +51,8 @@ function State_Player_Skill_SirenSong(_status)
 			}
 			
 			if ( pAttackCooldownTimer  >= 0 ) { pAttackCooldownTimer--;  }
-			if ( pBreakerCooldownTimer >= 0 ) { pBreakerCooldownTimer--; }		
 			if ( pDashCooldownTimer    >= 0 ) { pDashCooldownTimer--;    }
+			Player_Spell_Tick();
 			Player_Skills_Tick();
 						
 			#endregion

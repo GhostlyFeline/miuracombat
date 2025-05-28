@@ -217,6 +217,53 @@ if ( pMagmaAuraTimer > 0 )
 	#endregion	
 }
 
+if ( pIceArmorTimer > 0 )
+{
+	var _statusOrigin = [ _guiLeft, _guiTop + 400 ];
+	var _baseColor = merge_color(c_teal, c_blue, 0.33);
+	var _bgColor       = merge_color(_baseColor,  c_black, 0.66);
+	var _barEmptyColor = merge_color(_baseColor, c_dkgray, 0.80);
+	var _barFillColor  = merge_color(_baseColor,  c_white, 0.10);
+	
+	#region Background
+	
+	draw_set_color(_bgColor);
+	draw_set_alpha(0.33);
+	draw_rectangle(_statusOrigin[0] - 64, _statusOrigin[1] - 42, _statusOrigin[0] + 320, _statusOrigin[1] + 42, 0);
+	
+	#endregion
+	
+	#region Label Text
+	
+	draw_set_font(FntHudA);
+	draw_set_halign(fa_center);
+	draw_set_valign(fa_bottom);
+	draw_set_alpha(1.00);
+	var _string = "BUFF: Crystal Armor";
+	for( var i = 1; i >= 0; i--; )
+	{
+		if ( i == 1 ) { draw_set_color(_baseColor); } else { draw_set_color(c_white); }
+		draw_text( _statusOrigin[0] + 160 - (i*2), _statusOrigin[1] + (i*2), _string );
+	}
+	draw_text( _statusOrigin[0] + 160, _statusOrigin[1], _string );
+	
+	#endregion
+	
+	#region Bar
+	
+	var _barWidth = 320 - 32;
+	draw_set_alpha(1.00);
+	draw_set_color(_barEmptyColor);
+	draw_rectangle(_statusOrigin[0] + 16, _statusOrigin[1] + 4, _statusOrigin[0] + 16 + _barWidth, _statusOrigin[1] + 25, 0);
+	draw_rectangle_color(_statusOrigin[0] + 16, _statusOrigin[1] + 4, _statusOrigin[0] + 16 + ( _barWidth * ( pIceArmorTimer / pIceArmorFrames ) ), _statusOrigin[1] + 25, _barFillColor, c_white, c_white, _barFillColor, 0);
+	
+	draw_set_color(c_white);
+	draw_line_width( _statusOrigin[0] + 16, _statusOrigin[1], _statusOrigin[0] + 16, _statusOrigin[1] + 29, 3 );
+	draw_line_width( _statusOrigin[0] + 16 + _barWidth, _statusOrigin[1], _statusOrigin[0] + 16 + _barWidth, _statusOrigin[1] + 29, 3 );
+	
+	#endregion	
+}
+
 #endregion
 
 if ( pHudStyleToggle ) { Player_Draw_Hud_StyleB(); } else { Player_Draw_Hud_StyleA(); }

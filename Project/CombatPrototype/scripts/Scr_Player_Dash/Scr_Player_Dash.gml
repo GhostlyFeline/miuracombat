@@ -4,7 +4,7 @@ function Player_Dash_Init()
 {
 	pDashFrames = 24;
 	pDashCooldownTimer = -1;
-	pDashCooldownFrames = 60;
+	pDashCooldownFrames = 30;
 	pDashLastDir = 0;
 	pDashEnergyCost = 10;
 }

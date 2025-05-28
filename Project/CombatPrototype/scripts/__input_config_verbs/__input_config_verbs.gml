@@ -21,9 +21,9 @@ function __input_config_verbs()
             right: [input_binding_key("D")],
 								
 			shoot:   input_binding_mouse_button(mb_left),
-			dash:    input_binding_mouse_button(mb_right),
+			dash:    input_binding_key(vk_shift),
 			breaker: input_binding_key("1"),
-			skill:   input_binding_key(vk_space),
+			skill:   input_binding_mouse_button(mb_right),
 			
 			spell2: input_binding_key("2"),
 			spell3: input_binding_key("3"),

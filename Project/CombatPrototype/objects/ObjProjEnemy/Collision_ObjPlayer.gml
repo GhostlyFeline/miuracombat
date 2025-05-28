@@ -4,26 +4,20 @@ var _self = id;
 
 if (!other.invincible)
 {
-	var _len = random(32);
-	var _dir = random(360);
-	var _lX  = lengthdir_x(_len, _dir);
-	var _lY  = lengthdir_y(_len, _dir);
-	var _text = instance_create_layer(x + _lX, y + _lY, "TextAbove", ObjDamageNumber );
-	_text.damage = damage;
-	_text.textColor = c_red;
-	_text.textFont  = FntDamageNumB;
-	_text.fadeFrames = 60;
-
 	with ( other ) { PlayerHit(_self.damage); }
 	BulletHit(other);
 }
 else
 {
 	var _self = id;
-	with (FxHandler)
+	if ( other.canGraze )
 	{
-		part_particles_create(fxSysGlobalBelow, _self.x, _self.y, fxType[enumFxType.pFxPlayer_grazeSpark00], 5 );
+		with (FxHandler) { part_particles_create(fxSysGlobalBelow, _self.x, _self.y, fxType[enumFxType.pFxPlayer_grazeSpark00], 5 ); }
+		
+		if ( other.pIceShieldHasParried || other.pRecoveryTimer >= 0 ) { BulletHit(other); }
+		Sound_Play(enumSoundFxList.playerGraze);
+		
+		other.graze = true;
 	}
-	other.graze = true;
-	Sound_Play(enumSoundFxList.playerGraze);
+	
 }

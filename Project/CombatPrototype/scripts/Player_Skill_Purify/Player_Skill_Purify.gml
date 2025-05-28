@@ -14,7 +14,7 @@ function State_Player_Skill_Purify(_status)
 			with ( ObjProjPlayer_Purify ) { tick = lifetime - 15; }
 			
 			stateLength = 20;
-			pSkillCooldownFrames = 60;
+			pSkillCooldownFrames = 180;
 			
 			pSkillCooldownTimer = pSkillCooldownFrames;
 			
@@ -50,9 +50,9 @@ function State_Player_Skill_Purify(_status)
 		
 			#endregion
 			
-			if ( pAttackCooldownTimer  >= 0 ) { pAttackCooldownTimer--;  }
-			if ( pBreakerCooldownTimer >= 0 ) { pBreakerCooldownTimer--; }		
+			if ( pAttackCooldownTimer  >= 0 ) { pAttackCooldownTimer--;  }	
 			if ( pDashCooldownTimer    >= 0 ) { pDashCooldownTimer--;    }
+			Player_Spell_Tick();
 			Player_Skills_Tick();
 						
 			#endregion

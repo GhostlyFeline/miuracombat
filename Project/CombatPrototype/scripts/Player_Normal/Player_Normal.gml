@@ -37,7 +37,7 @@ function State_Player_Normal(_status)
 			if ( input_check("skill") && pSkillCooldownTimer < 0 && pEnergy >= pSkillEnergyCost )
 			{
 				var _canSkill = true;
-				if ( pSkillCurrent == State_Player_Skill_SirenSong && pSirenSongStacks >= 3 ) { _canSkill = false; }
+				if ( pSkillCurrent == State_Player_Skill_SirenSong && pSirenSongStacks >= pSirenSongStackMax ) { _canSkill = false; }
 				if ( pSkillCurrent == State_Player_Skill_MagmaAura && pMagmaAuraTimer > 0  ) { _canSkill = false; }
 				if ( _canSkill )
 				{
@@ -53,10 +53,10 @@ function State_Player_Normal(_status)
 				pElementSwap_animTimer = -1;
 			}			
 			
-			if ( pAttackCooldownTimer  >= 0 ) { pAttackCooldownTimer--;  }
-			if ( pBreakerCooldownTimer >= 0 ) { pBreakerCooldownTimer--; }		
+			if ( pAttackCooldownTimer  >= 0 ) { pAttackCooldownTimer--;  }	
 			if ( pDashCooldownTimer    >= 0 ) { pDashCooldownTimer--;    }
 			if ( pSkillCooldownTimer   >= 0 ) { pSkillCooldownTimer--;   }
+			Player_Spell_Tick();
 			Player_Energy_Tick();
 			Player_Skills_Tick();
 			

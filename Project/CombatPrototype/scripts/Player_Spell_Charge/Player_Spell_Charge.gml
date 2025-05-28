@@ -138,9 +138,9 @@ function State_Player_Spell_Charge(_status)
 			}
 			
 			if ( pAttackCooldownTimer  >= 0 ) { pAttackCooldownTimer--;  }
-			if ( pBreakerCooldownTimer >= 0 ) { pBreakerCooldownTimer--; }		
 			if ( pDashCooldownTimer    >= 0 ) { pDashCooldownTimer--;    }
 			if ( pSkillCooldownTimer   >= 0 ) { pSkillCooldownTimer--;   }
+			Player_Spell_Tick();
 			Player_Skills_Tick();
 						
 			#endregion

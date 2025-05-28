@@ -46,7 +46,7 @@ function Player_Draw_Hud_StyleA()
 	}
 	
 	var _color = c_white;
-	if ( pEnergy < pSkillEnergyCost || pSkillCooldownTimer > 0 || pSirenSongStacks >= 3 ) { _color = c_gray; }
+	if ( pEnergy < pSkillEnergyCost || pSkillCooldownTimer > 0 || pSirenSongStacks >= 3 ) { _color = c_dkgray; }
 	draw_sprite_ext(Spr_Hud_Ability, _frame, _hudOrigin[0] + 74, _hudOrigin[1] - 40, 0.8, 0.8, 0, _color, 1);
 	#endregion
 
@@ -55,8 +55,7 @@ function Player_Draw_Hud_StyleA()
 	#endregion
 
 	#region Spells
-	
-	
+		
 	for ( var i = 0; i < 3; i++; )
 	{
 		var _percent = 1;
@@ -66,7 +65,7 @@ function Player_Draw_Hud_StyleA()
 			if ( pEnergy < pBreakerEnergyCost ) { _percent = 0; }
 		}
 		
-		var _spellOrigin = [ _hudOrigin[0] - 160 + ( i * 45 ), _hudOrigin[1] - 40 ];
+		var _spellOrigin = [ _hudOrigin[0] - 160 + ( i * 56 ), _hudOrigin[1] - 40 ];
 		var _sprOrigin = [ sprite_get_xoffset(Spr_Hud_Spell), sprite_get_yoffset(Spr_Hud_Spell) ];
 	
 		var _sprW = sprite_get_width (Spr_Hud_Spell);
@@ -77,10 +76,30 @@ function Player_Draw_Hud_StyleA()
 		var _top     = _sprH - ( _percent * _sprH );
 		var __bottom = _sprH;
 				
-		draw_sprite_ext(Spr_Hud_Spell, 0, _spellOrigin[0], _spellOrigin[1], 1, 1, 0, c_gray, 1);
-		draw_sprite_part_ext(Spr_Hud_Spell, 0, _left, _top, _sprW, _sprH, _spellOrigin[0] - _sprOrigin[0], _spellOrigin[1] - _sprOrigin[1] + _top, 1, 1, c_white, 1);
+		draw_sprite_ext(Spr_Hud_Spell, i, _spellOrigin[0], _spellOrigin[1], 1, 1, 0, c_dkgray, 1);
+		draw_sprite_part_ext(Spr_Hud_Spell, i, _left, _top, _sprW, _sprH, _spellOrigin[0] - _sprOrigin[0], _spellOrigin[1] - _sprOrigin[1] + _top, 1, 1, c_white, 1);
 	}
 	
+	gpu_set_blendmode(bm_add);
+	for ( var i = 0; i < 3; i++; )
+	{
+		var _ringAlpha = 0;
+		var _ringScale = 1;
+		var _ringColor = c_white;
+		
+		if ( drawSpellFinishTimer[i] >= 0 )
+		{
+			_ringAlpha = lerp(0, 1, drawSpellFinishTimer[i] / drawSpellFinishFrames[i]);
+			_ringScale = lerp(2, 1, drawSpellFinishTimer[i] / drawSpellFinishFrames[i]);
+			_ringColor = merge_color(c_aqua, c_white, drawSpellFinishTimer[i] / drawSpellFinishFrames[i]);
+			drawSpellFinishTimer[i]--;
+		}
+		
+		var _spellOrigin = [ _hudOrigin[0] - 160 + ( i * 56 ), _hudOrigin[1] - 40 ];
+		draw_sprite_ext(Spr_Hud_SpellGlowRing, 1, _spellOrigin[0], _spellOrigin[1], 1, 1, 0, c_white, _ringAlpha);
+		draw_sprite_ext(Spr_Hud_SpellGlowRing, 0, _spellOrigin[0], _spellOrigin[1], _ringScale, _ringScale, 0, _ringColor, _ringAlpha);
+	}
+	gpu_set_blendmode(bm_normal);
 	
 	for ( var i = 0; i < 3; i++; )
 	{
@@ -221,7 +240,7 @@ function Player_Draw_Hud_StyleB()
 	
 	#region Player Hud
 
-	var _hudOrigin = [ _guiLeft + 88 - charOffset[0], _guiBottom - 96 - charOffset[1] ];
+	var _hudOrigin = [ _guiLeft + 64 - charOffset[0], _guiBottom - 104 - charOffset[1] ];
 
 	#region Decorative Elements
 
@@ -338,6 +357,7 @@ function Player_Draw_Hud_StyleB()
 	#endregion
 	
 	#region Spells
+	
 	for ( var i = 0; i < 3; i++; )
 	{
 		var _percent = 1;
@@ -347,7 +367,7 @@ function Player_Draw_Hud_StyleB()
 			if ( pEnergy < pBreakerEnergyCost ) { _percent = 0; }
 		}
 		
-		var _spellOrigin = [ _hudOrigin[0] + 120 + ( i * 47 ), _hudOrigin[1] + 70 ];
+		var _spellOrigin = [ _hudOrigin[0] + 124 + ( i * 56 ), _hudOrigin[1] + 74 ];
 		var _sprOrigin = [ sprite_get_xoffset(Spr_Hud_Spell), sprite_get_yoffset(Spr_Hud_Spell) ];
 	
 		var _sprW = sprite_get_width (Spr_Hud_Spell);
@@ -358,9 +378,32 @@ function Player_Draw_Hud_StyleB()
 		var _top     = _sprH - ( _percent * _sprH );
 		var __bottom = _sprH;
 				
-		draw_sprite_ext(Spr_Hud_Spell, 0, _spellOrigin[0], _spellOrigin[1], 1, 1, 0, c_gray, 1);
-		draw_sprite_part_ext(Spr_Hud_Spell, 0, _left, _top, _sprW, _sprH, _spellOrigin[0] - _sprOrigin[0], _spellOrigin[1] - _sprOrigin[1] + _top, 1, 1, c_white, 1);
+		draw_sprite_ext(Spr_Hud_Spell, i, _spellOrigin[0], _spellOrigin[1], 1, 1, 0, c_dkgray, 1);
+		draw_sprite_part_ext(Spr_Hud_Spell, i, _left, _top, _sprW, _sprH, _spellOrigin[0] - _sprOrigin[0], _spellOrigin[1] - _sprOrigin[1] + _top, 1, 1, c_white, 1);
+		
 	}
+	
+	gpu_set_blendmode(bm_add);
+	for ( var i = 0; i < 3; i++; )
+	{
+		var _ringAlpha = 0;
+		var _ringScale = 1;
+		var _ringColor = c_white;
+		
+		if ( drawSpellFinishTimer[i] >= 0 )
+		{
+			_ringAlpha = lerp(0, 1, drawSpellFinishTimer[i] / drawSpellFinishFrames[i]);
+			_ringScale = lerp(2, 1, drawSpellFinishTimer[i] / drawSpellFinishFrames[i]);
+			_ringColor = merge_color(c_aqua, c_white, drawSpellFinishTimer[i] / drawSpellFinishFrames[i]);
+			drawSpellFinishTimer[i]--;
+		}
+		
+		var _spellOrigin = [ _hudOrigin[0] + 124 + ( i * 56 ), _hudOrigin[1] + 74 ];
+		draw_sprite_ext(Spr_Hud_SpellGlowRing, 1, _spellOrigin[0], _spellOrigin[1], 1, 1, 0, c_white, _ringAlpha);
+		draw_sprite_ext(Spr_Hud_SpellGlowRing, 0, _spellOrigin[0], _spellOrigin[1], _ringScale, _ringScale, 0, _ringColor, _ringAlpha);
+	}
+	gpu_set_blendmode(bm_normal);
+	
 	#endregion
 	
 	#region Current Ability
@@ -394,7 +437,7 @@ function Player_Draw_Hud_StyleB()
 	var __bottom = _sprH;
 	
 	
-	draw_sprite_ext(Spr_Hud_Ability, _frame, _abilityPos[0], _abilityPos[1], 1, 1, 0, c_gray, 1);
+	draw_sprite_ext(Spr_Hud_Ability, _frame, _abilityPos[0], _abilityPos[1], 1, 1, 0, c_dkgray, 1);
 	
 	draw_sprite_part_ext(Spr_Hud_Ability, _frame, _left, _top, _sprW, _sprH, _abilityPos[0] - _sprOrigin[0], _abilityPos[1] - _sprOrigin[1] + _top, 1, 1, c_white, 1);
 	
@@ -419,15 +462,15 @@ function Player_Draw_Hud_StyleB()
 	var __bottom = _sprH;
 	
 	
-	draw_sprite_ext(Spr_Hud_LimitMeter, 0, lMeterPos[0], lMeterPos[1], 1, 1, 0, c_ltgray, 1);
-	
-	draw_sprite_part_ext(Spr_Hud_LimitMeter, 1, _left, _top, _sprW, _sprH, lMeterPos[0] - _sprOrigin[0], lMeterPos[1] - _sprOrigin[1] + _top, 1, 1, c_white, 1);
-	if ( pLimit >= pLimitMax )
-	{
-		gpu_set_blendmode(bm_add);
-		draw_sprite_ext(Spr_Hud_LimitMeter, 1, lMeterPos[0], lMeterPos[1], 1, 1, 0, c_white, ( 1 - ( (tick mod 10) / 10 ) ) * 0.5 ); 
-		gpu_set_blendmode(bm_normal);
-	}
+	//draw_sprite_ext(Spr_Hud_LimitMeter, 0, lMeterPos[0], lMeterPos[1], 1, 1, 0, c_ltgray, 1);
+	//
+	//draw_sprite_part_ext(Spr_Hud_LimitMeter, 1, _left, _top, _sprW, _sprH, lMeterPos[0] - _sprOrigin[0], lMeterPos[1] - _sprOrigin[1] + _top, 1, 1, c_white, 1);
+	//if ( pLimit >= pLimitMax )
+	//{
+	//	gpu_set_blendmode(bm_add);
+	//	draw_sprite_ext(Spr_Hud_LimitMeter, 1, lMeterPos[0], lMeterPos[1], 1, 1, 0, c_white, ( 1 - ( (tick mod 10) / 10 ) ) * 0.5 ); 
+	//	gpu_set_blendmode(bm_normal);
+	//}
 	
 	#endregion
 	

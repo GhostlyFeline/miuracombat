@@ -10,7 +10,8 @@ function State_Player_Dying(_status)
 			#region Init Script
 			
 			stateNext = State_Player_Dead;
-			stateNextLength = -1;
+			stateNextLength = -1;			
+			isDying = true;
 			
 			Character_Flash_Activate( stateLength, 2, c_black, 1.0, false, 100000 );
 			

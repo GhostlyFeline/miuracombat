@@ -28,8 +28,14 @@ pLimit = 0;
 pLimitMax = 100;
 
 
+pRecoveryTimer = -1;
+pRecoveryFrames = 15;
+
+
+canGraze = true;
 graze = false;
 
+isDying = false;
 
 pElementSwap_animTimer = -1;
 pElementSwap_frames = 3;
@@ -60,13 +66,35 @@ drawMpReal    = pEnergy;
 drawMpDisplay = drawMpReal;
 
 
+drawSpellFinishTimer [0] = 0;
+drawSpellFinishFrames[0] = 10;
+
+drawSpellFinishTimer [1] = 0;
+drawSpellFinishFrames[1] = 10;
+
+drawSpellFinishTimer [2] = 0;
+drawSpellFinishFrames[2] = 10;
+
+
 squishScl = [1, 1];
 
 
 function PlayerHit(_damage)
 {		
-	charHealth = max( charHealth - _damage, 0 );
+	var _newDamage = floor(_damage * pIceArmorMultiplier);
+		
+	charHealth = max( charHealth - _newDamage, 0 );
 	Sound_Play(enumSoundFxList.playerHit);
+	
+	var _len = random(32);
+	var _dir = random(360);
+	var _lX  = lengthdir_x(_len, _dir);
+	var _lY  = lengthdir_y(_len, _dir);
+	var _text = instance_create_layer(x + _lX, y + _lY, "TextAbove", ObjDamageNumber );
+	_text.damage = _newDamage;
+	_text.textColor = c_red;
+	_text.textFont  = FntDamageNumB;
+	_text.fadeFrames = 60;
 	
 	charShakeFrames = 30;
 	charShakeTimer  = charShakeFrames;
@@ -81,6 +109,8 @@ function PlayerHit(_damage)
 	
 	Character_Flash_Activate(8, 1, c_red, 1.0, true, 100);
 	
-	var _limitGainCalc = ( _damage / charHealthMax ) * 50;
+	pRecoveryTimer = pRecoveryFrames;
+	
+	var _limitGainCalc = ( _newDamage / charHealthMax ) * 50;
 	pLimit = min( pLimit + _limitGainCalc, pLimitMax );
 }
