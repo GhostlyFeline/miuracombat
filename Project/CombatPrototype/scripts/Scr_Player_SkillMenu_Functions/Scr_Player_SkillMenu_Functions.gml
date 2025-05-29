@@ -32,9 +32,25 @@ function Player_Skill_Menu_Tick()
 		var _aimAxisX = input_value("aimright") - input_value("aimleft");
 		var _aimAxisY = input_value("aimdown")  - input_value("aimup");
 		
+		if ( input_player_using_keyboard() )
+		{
+			var _guiCenterX = display_get_gui_width() * 0.5;
+			var _guiCenterY = display_get_gui_height() * 0.5;
+
+			var _guiMouseX = (window_mouse_get_x() / window_get_width() ) * display_get_gui_width();
+			var _guiMouseY = (window_mouse_get_y() / window_get_height()) * display_get_gui_height();
+			
+			
+			var _dist = point_distance (_guiCenterX, _guiCenterX, _guiMouseX, _guiMouseY);
+			var _dir  = point_direction(_guiCenterX, _guiCenterX, _guiMouseX, _guiMouseY);
+			
+			_aimAxisX = ( _guiMouseX - _guiCenterX ) / pElementMenuRadius;
+			_aimAxisY = ( _guiMouseY - _guiCenterY ) / pElementMenuRadius;
+		}
+		
 		var _rawLen = point_distance (0, 0, _aimAxisX, _aimAxisY);	
 	
-		if ( _rawLen >= 0.50 )
+		if ( _rawLen >= 0.25 )
 		{
 			pSkillMenuPointDir = round(point_direction(0, 0, _aimAxisX, _aimAxisY)/90)*90;
 			pSkillMenuPointDist = 1;
@@ -42,10 +58,10 @@ function Player_Skill_Menu_Tick()
 		}
 		else
 		{
-			pSkillMenuPointDist = 0;
+			if ( input_player_using_gamepad() ) { pSkillMenuPointDist = 0; }
 		}
 	
-		if ( pSkillMenuConfirm && ( _rawLen < 0.25 || !input_check("skillSwap") ) )
+		if ( pSkillMenuConfirm && ( ( _rawLen < 0.25 && input_player_using_gamepad() ) || !input_check("skillSwap") ) )
 		{		
 			switch(pSkillMenuPointDir)
 			{
