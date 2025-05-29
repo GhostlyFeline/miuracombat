@@ -60,6 +60,9 @@ enum enumFxType
 	eFxEnemy_explodeSpark00,
 	eFxEnemy_explodeSpark01,
 	
+	eFxEnemy_lastHitShine00,
+	eFxEnemy_lastHitFlash00,
+	
 	wFxProj_borderCloud00,
 	wFxProj_borderLines,
 	wFxWorld_bubbles00,
@@ -392,6 +395,26 @@ part_type_direction(fxType[_entry], 0, 360, 0, 0);
 part_type_life(fxType[_entry], 40, 60);
 
 #endregion
+
+var _entry = enumFxType.eFxEnemy_lastHitShine00;
+fxType[_entry] = part_type_create();
+part_type_sprite(fxType[_entry], SprFxShineTri, 0, 0, 0);
+part_type_scale(fxType[_entry], 1, 0.33);
+part_type_size(fxType[_entry], 1.0, 2.0, 0.1, 0 );
+part_type_alpha2(fxType[_entry], 1, 0 );
+part_type_color1(fxType[_entry], c_white);
+part_type_blend(fxType[_entry], true);
+part_type_orientation(fxType[_entry], 0, 360, 0, 0, true);
+part_type_life(fxType[_entry], 60, 60);
+
+var _entry = enumFxType.eFxEnemy_lastHitFlash00;
+fxType[_entry] = part_type_create();
+part_type_sprite(fxType[_entry], SprFxGenericSpark, 0, 0, 0);
+part_type_size(fxType[_entry], 1.0, 2.0, 0.3, 0 );
+part_type_alpha3(fxType[_entry], 1, 1, 0 );
+part_type_color1(fxType[_entry], c_white);
+part_type_blend(fxType[_entry], true);
+part_type_life(fxType[_entry], 60, 60);
 
 #region Enemy Projectiles
 

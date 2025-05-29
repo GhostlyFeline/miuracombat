@@ -23,6 +23,10 @@ battleActive = false;
 battleWon = false;
 battleLost = false;
 
+battleFinalHitFrames = 90;
+battleFinalHitTimer  = 0;
+battleFinalHitPos = [0, 0];
+
 battleVictoryFrames = 300;
 battleVictoryTimer  = 0;
 

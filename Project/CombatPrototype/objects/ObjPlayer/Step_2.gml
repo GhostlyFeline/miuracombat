@@ -27,11 +27,15 @@ var _camera = view_camera[0];
 var _lerpAmt = 0.10;
 
 
-var _focusTarget = [ pMoveBoundsCirclePos[0], pMoveBoundsCirclePos[1] ];
-if ( instance_exists(ObjPlayerTarget) ) { _focusTarget = [ ObjPlayerTarget.x, ObjPlayerTarget.y]; }
-if ( BattleHandler.battleWon ) { _focusTarget = [ x, y ]; }
+//var _focusTarget = [ pMoveBoundsCirclePos[0], pMoveBoundsCirclePos[1] ];
+if ( instance_exists(ObjPlayerTarget) )
+{
+	var _follow = ObjPlayerTarget.follow;	
+	if ( instance_exists(_follow) ) { cameraTarget = [ _follow.x, _follow.y]; }
+}
+if ( BattleHandler.battleVictoryTimer > 0 || !BattleHandler.battleActive ) { cameraTarget = [ x, y ]; }
 
-var _focusDist = point_distance(x, y, _focusTarget[0], _focusTarget[1]);
+var _focusDist = point_distance(x, y, cameraTarget[0], cameraTarget[1]);
 
 
 
@@ -48,7 +52,7 @@ if ( _focusDist >= 0 )
 	camera_set_view_size(_camera, _lerpSize[0], _lerpSize[1]);
 }
 
-var _focusPosition = [ lerp( x, _focusTarget[0], 0.5 ), lerp( y, _focusTarget[1], 0.5 )];
+var _focusPosition = [ lerp( x, cameraTarget[0], 0.5 ), lerp( y, cameraTarget[1], 0.5 )];
 var _camDimensions = [camera_get_view_width(_camera), camera_get_view_height(_camera)];
 
 var _camPositionOld = [camera_get_view_x(_camera), camera_get_view_y(_camera)];

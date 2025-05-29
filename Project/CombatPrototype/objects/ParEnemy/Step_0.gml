@@ -84,6 +84,8 @@ if ( charHealth <= 0 )
 	BattleHandler.xpTotal += enemyDropXp;
 	for ( var i = 0; i < array_length(enemyDropItem); i++; ) { array_push(BattleHandler.itemDropArray, enemyDropItem[i]); }
 	
+	BattleHandler.battleFinalHitPos = [x, y];
+	
 	instance_destroy();
 } 
 

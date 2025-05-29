@@ -26,7 +26,7 @@ draw_set_valign(fa_top);
 
 
 
-if ( battleWon )
+if ( battleVictoryTimer > 0 )
 {
 	#region Victory Screen
 	

@@ -33,7 +33,7 @@ with (other)
 			charShakeTimer  = charShakeFrames;
 			charShakeAmp = 16;
 	
-			var _len = random(32);
+			var _len = random(64);
 			var _dir = random(360);
 			var _lX  = lengthdir_x(_len, _dir);
 			var _lY  = lengthdir_y(_len, _dir);

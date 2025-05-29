@@ -17,7 +17,7 @@ charHealth = charHealthMax;
 drawHpReal    = charHealth;
 drawHpDisplay = drawHpReal;
 
-bossName = "Angel of the Deep";
+bossName = "Boss Healthbar Test";
 
 enemyWeakness = choose(enumProjPlayerElement.spirit, enumProjPlayerElement.light, enumProjPlayerElement.ice, enumProjPlayerElement.fire);
 

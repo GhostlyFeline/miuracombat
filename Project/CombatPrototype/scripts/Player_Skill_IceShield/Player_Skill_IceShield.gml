@@ -16,6 +16,9 @@ function State_Player_Skill_IceShield(_status)
 			pSkillCooldownFrames = 60;
 			pSkillCooldownTimer = pSkillCooldownFrames;
 			
+			graze = false;
+			pRecoveryTimer = -1;
+			canGraze = true;
 			invincible = true;
 			
 			pIceShieldHasParried = false;

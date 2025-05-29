@@ -42,6 +42,8 @@ enemyMagmaFrames = 30;
 
 invincible = false;
 
+isDying = false;
+
 
 var _len = random(ObjPlayer.pMoveBoundsCircleRadius);
 var _dir = random(360);

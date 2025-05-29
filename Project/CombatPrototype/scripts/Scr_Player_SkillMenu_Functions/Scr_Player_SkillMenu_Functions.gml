@@ -112,7 +112,7 @@ function Player_Skill_Menu_Tick()
 	{
 		if ( pElementSwap_animTimer < 0 && stateCurrent == State_Player_Normal )
 		{
-			if ( input_check("skillSwap" ) && !pSkillMenuHolding )
+			if ( input_check("skillSwap" ) && !pSkillMenuHolding && !pElementMenuEnabled )
 			{		
 				window_mouse_set(window_get_width() / 2, window_get_height() / 2);
 				pSkillMenuEnabled = true;
