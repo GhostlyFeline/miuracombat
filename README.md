@@ -1,7 +1,7 @@
 # Mermaid Combat Simulation
 Mermaid Combat Simulation by GhostlyFeline
 
-This is my interpretation of the systems and mechanics of Miuratale's combat system, with a focus on fast and responsive action gameplay.  It uses mostly recycled assets from my own projects, with a few custom ones to better match the look of Miuratale's UI.
+This is my interpretation of the systems and mechanics of Miuratale's combat system, with a focus on fast and responsive action gameplay.  It uses mostly recycled assets from my own projects, with a few custom ones to better match the look of Miuratale's UI.  It is a companion piece to my Miuratale feedback notes, which can be found here: https://docs.google.com/document/d/1rDwYh3lXdPdGghjcVPP0kvRQEnYJdgK3L4kCEomdpm8/edit?usp=sharing
 
 Most of the rpg mechanics have been either omitted or faked for the purposes of quick prototyping.  The idea isn't to reconstruct the entire game (I don't have time and it would feel disrespectful to do so), but rather to brainstorm ideas, and get the flow of combat feeling good and fun.
 
