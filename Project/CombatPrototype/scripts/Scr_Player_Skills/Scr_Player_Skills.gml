@@ -25,7 +25,7 @@ function Player_Skills_Init()
 	
 	pMagmaAuraEnergyCost = 30;
 	pMagmaAuraTimer = 0;
-	pMagmaAuraFrames = 60;
+	pMagmaAuraFrames = game_get_speed(gamespeed_fps) * 5;
 	pMagmaAuraStacks = 0;
 	pMagmaAuraRange = 768;
 	
@@ -125,14 +125,6 @@ function Player_Skills_Tick()
 				var _dir = random(360);
 				var _pos = [_self.x + lengthdir_x(_len, _dir), _self.y + lengthdir_y(_len, _dir)];				
 				part_particles_create(fxSysGlobalBelow, _pos[0], _pos[1], fxType[enumFxType.pFxPlayer_skillMagmaChargeSpark00], 1 );
-						
-				//repeat(1)
-				//{
-				//	var _len = random_range( _self.pMagmaAuraRange * 0.33, _self.pMagmaAuraRange * 0.80 );
-				//	var _dir = random(360);
-				//	var _pos = [_self.x + lengthdir_x(_len, _dir), _self.y + lengthdir_y(_len, _dir)];				
-				//	part_particles_create(fxSysGlobalBelow, _pos[0], _pos[1], fxType[enumFxType.pFxPlayer_skillMagmaCircleSpark00], 1 );
-				//}
 			}
 		
 			with ( ObjProjPlayer ) { magmaAuraMulti = 2.0; }		
@@ -145,6 +137,7 @@ function Player_Skills_Tick()
 	{
 		with ( ObjProjPlayer          ) { magmaAuraMulti = 1; }
 		with ( ObjProjPlayer_Critical ) { magmaAuraMulti = 1; }
+		with ( ObjProjPlayer_Magma ) { if ( tick < lifetime - 30 ) { tick = lifetime - 30; } }
 	}
 	#endregion
 }

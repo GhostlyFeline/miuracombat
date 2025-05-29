@@ -31,6 +31,7 @@ function State_Player_Skill_MagmaAura(_status)
 			Player_Targeting_Tick();
 			
 			pMoveSpeedMulti = 0.25;
+			pMagmaAuraTimer = pMagmaAuraFrames;
 			
 			#region Play the attack animation based on the length of the attack.
 			sprite_index = SprPlayerAttack;

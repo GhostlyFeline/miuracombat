@@ -1,7 +1,7 @@
 /// @description Insert description here
 // You can write your code in this editor
 
-projScale = 40;
+projScale = 30;
 image_xscale = projScale;
 image_yscale = projScale;
 image_alpha = 0.33;
@@ -11,7 +11,7 @@ projDir = 0;
 
 tick = 0;
 
-lifetime = 300;
+lifetime = 9999;
 
 
 element = enumProjPlayerElement.fire;
